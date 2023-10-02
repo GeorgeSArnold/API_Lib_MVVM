@@ -1,0 +1,35 @@
+﻿<UserControl x:Class="TicketUI.Views.ConnectionView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TicketUI.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="555" d:DesignWidth="800"
+             Background="White"
+             FontSize="22">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Server IP:" Margin="10"/>
+            <TextBox x:Name="ServerIp" Text="{Binding ServerIp}" Margin="10"/>
+            <TextBlock Text="Zammad Token:" Margin="10"/>
+            <TextBox x:Name="tokenTextBox" Text="{Binding ZammadToken}" Margin="10"/>
+            <Button Content="Save Connection Details" x:Name="SaveConnectionDetails" Margin="10"/>
+        </StackPanel>
+
+        <StackPanel Grid.Row="1">
+            <TextBlock Text="Loaded Server IP:" Margin="10"/>
+            <TextBox x:Name="LoadedServerIp" Text="{Binding LoadedServerIp}" Margin="10"/>
+            <TextBlock Text="Loaded Zammad Token:" Margin="10"/>
+            <TextBox x:Name="LoadedZammadToken" Text="{Binding LoadedZammadToken}" Margin="10"/>
+            <Button Content="Load Connection Details" x:Name="LoadConnectionDetails" Margin="10"/>
+        </StackPanel>
+    </Grid>
+</UserControl>
+
