@@ -90,14 +90,14 @@
             Grid.Row="7" 
             Margin="10">
             <TextBlock Text="Created_at:"/>
-            <TextBox x:Name="Created_at"/>
+            <TextBox x:Name="Created_at" Text="{Binding Created_at}"/>
         </StackPanel>
 
         <StackPanel 
             Grid.Row="8" 
             Margin="10">
             <TextBlock Text="Article_ids:"/>
-            <TextBox x:Name="Article_ids"/>
+            <TextBox x:Name="ArticleIdsString" Text="{Binding ArticleIdsString}"/>
         </StackPanel>
     </Grid>
 </UserControl>

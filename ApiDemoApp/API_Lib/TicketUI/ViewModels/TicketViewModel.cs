@@ -1,28 +1,21 @@
-﻿using API_Lib.Models;
+﻿using API_Lib;
+using API_Lib.Models;
 using Caliburn.Micro;
 using System;
-using System.CodeDom;
 using System.Collections.Generic;
-using System.Data.Linq;
-using System.Linq;
-using System.Net.Sockets;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
-using TicketUI.Views;
-using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Windows;
-using System.Text.RegularExpressions;
-using API_Lib;
-using static API_Lib.TicketProcessor;
-using System.Reflection;
 
 namespace TicketUI.ViewModels
 {
     public class TicketViewModel : Screen
     {
-        // ticket props
+        #region props
+
+        // input
+        private int ticketId;
+
+        // ticket fields
         private int id;
         private int number;
         private string title;
@@ -30,51 +23,137 @@ namespace TicketUI.ViewModels
         private string state;
         private string priority;
         private string created_at;
+        private List<int> article_ids;
+        private string articleIdsString;
+
+        // ticket props
+        public int TicketId
+        {
+            get { return ticketId; }
+            set 
+            { 
+                ticketId = value;
+                NotifyOfPropertyChange(() => TicketId);
+            }
+        }
+
         public int Id
         {
             get { return id; }
-            set { id = value; }
+            set
+            {
+                id = value;
+                NotifyOfPropertyChange(() => Id);
+            }
         }
+
         public int Number
         {
             get { return number; }
-            set { number = value; }
+            set
+            {
+                number = value;
+                NotifyOfPropertyChange(() => Number);
+            }
         }
+
         public string Title
         {
             get { return title; }
-            set { title = value; }
+            set
+            {
+                title = value;
+                NotifyOfPropertyChange(() => Title);
+            }
         }
+
         public string Group
         {
             get { return group; }
-            set { group = value; }
+            set
+            {
+                group = value;
+                NotifyOfPropertyChange(() => Group);
+            }
         }
+
         public string State
         {
             get { return state; }
-            set { state = value; }
+            set
+            {
+                state = value;
+                NotifyOfPropertyChange(() => State);
+            }
         }
+
         public string Priority
         {
             get { return priority; }
-            set { priority = value; }
+            set
+            {
+                priority = value;
+                NotifyOfPropertyChange(() => Priority);
+            }
         }
+
         public string Created_at
         {
             get { return created_at; }
-            set { created_at = value; }
+            set
+            {
+                created_at = value;
+                NotifyOfPropertyChange(() => Created_at);
+            }
+        }
+
+        public List<int> Article_ids
+        {
+            get { return article_ids; }
+            set
+            {
+                article_ids = value;
+                NotifyOfPropertyChange(() => Article_ids);
+            }
         }
 
 
-        public async Task LoadTicketAndPrint()
+        public string ArticleIdsString
+        {
+            get { return articleIdsString; }
+            set
+            {
+                articleIdsString = value;
+                NotifyOfPropertyChange(() => ArticleIdsString);
+            }
+        }
+
+        // article_ids > string
+        private void UpdateArticleIdsString()
+        {
+            ArticleIdsString = string.Join(", ", Article_ids);
+        }
+
+        // update int > string
+        public void UpdateArticleIds(List<int> articleIds)
+        {
+            Article_ids = articleIds;
+            UpdateArticleIdsString();
+        }
+
+        #endregion
+
+        // load ticket
+        public async Task LoadTicketAndPrint(int ticketId)
         {
             try
             {
-                // hardcoded id > user
-                int ticketId = 3;
-
-                // instance
+                if (ticketId == 0)
+                {
+                    MessageBox.Show("please insert ticket id...");
+                    return;
+                }
+                // load connection
                 TicketProcessor ticketProcessor = TicketProcessor.Instance;
 
                 ConnectionViewModel cvm = new ConnectionViewModel();
@@ -82,23 +161,39 @@ namespace TicketUI.ViewModels
                 string serverIP = cvm.GetServerIp();
                 string zammadToken = cvm.GetZammadToken(); 
 
-                // load t
+                // load ticket
                 TicketModel ticket = await ticketProcessor.LoadTicket(ticketId, serverIP, zammadToken);
 
                 // check loaded ticket
                 if (ticket != null)
                 {
-                    Console.WriteLine("Ticket geladen:");
+                    Console.WriteLine($"ticket id:{ticketId} loaded:");
                     Console.WriteLine($"ID: {ticket.Id}");
+                    Console.WriteLine($"Number: {ticket.Number}");
+                    Console.WriteLine($"Title: {ticket.Title}");
+                    Console.WriteLine($"Group: {ticket.Group}");
+                    Console.WriteLine($"State: {ticket.State}");
+                    Console.WriteLine($"Priority: {ticket.Priority}");
+                    Console.WriteLine($"Created_ad: {ticket.Created_at}");
+                    Console.WriteLine($"Article_ids: {ticket.Article_ids}");
+
                     Id = ticket.Id;
+                    Number = ticket.Number;
+                    Title = ticket.Title;
+                    Group = ticket.Group;
+                    State = ticket.State;
+                    Priority = ticket.Priority;
+                    Created_at = ticket.Created_at;
+                    Article_ids = ticket.Article_ids;
+
+                    // Update ArticleIdsString
+                    ArticleIdsString = string.Join(", ", Article_ids);
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Fehler beim Laden des Tickets: " + ex.Message);
+                Console.WriteLine("invalid ticket id... " + ex.Message);
             }
         }
-
-
     }
 }

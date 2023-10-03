@@ -1,5 +1,4 @@
-﻿using API_Lib;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +16,18 @@ using System.Windows.Shapes;
 namespace TicketUI.Views
 {
     /// <summary>
-    /// Interaction logic for TicketListView.xaml
+    /// Interaction logic for TableView.xaml
     /// </summary>
-    public partial class TicketListView : UserControl
+    public partial class TableView : UserControl
     {
-        public TicketListView()
+        public TableView()
         {
             InitializeComponent();
-            ApiHelper.InitializeClient();
+        }
+
+        private void EditButton_Click(object sender, RoutedEventArgs e)
+        {
+            throw new NotImplementedException();
         }
     }
 }

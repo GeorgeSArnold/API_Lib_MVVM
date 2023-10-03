@@ -23,11 +23,6 @@ namespace TicketUI.ViewModels
             ActivateItemAsync(new TicketViewModel());
         }
 
-        public void LoadTicketList()
-        {
-            ActivateItemAsync(new TicketListViewModel());
-        }
-
         public void LoadArticle()
         {
             ActivateItemAsync(new ArticleViewModel());
@@ -36,6 +31,11 @@ namespace TicketUI.ViewModels
         public void LoadConnection()
         {
             ActivateItemAsync(new ConnectionViewModel());
+        }
+
+        public void LoadTable()
+        {
+            ActivateItemAsync(new TableViewModel());
         }
     }
 }

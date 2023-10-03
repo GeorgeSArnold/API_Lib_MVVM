@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace TicketUI.ViewModels
 {
-    public class TicketListViewModel : Screen
+    public class TableViewModel : Screen
     {
+
+
     }
 }

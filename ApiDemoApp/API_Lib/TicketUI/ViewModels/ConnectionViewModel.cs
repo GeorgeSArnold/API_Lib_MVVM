@@ -76,7 +76,6 @@ namespace TicketUI.ViewModels
             return LoadedZammadToken;
         }
 
-
         public void SaveConnectionDetails()
         {
             try

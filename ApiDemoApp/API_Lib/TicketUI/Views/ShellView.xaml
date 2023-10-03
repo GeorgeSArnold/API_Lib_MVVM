@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketUI.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="850" Width="1024">
+        Title="ShellView" Height="850" Width="1024"
+        WindowStartupLocation="CenterScreen">
     <Grid>
 
         <Grid.RowDefinitions>
@@ -17,7 +18,7 @@
             <Menu DockPanel.Dock="Top" FontSize="18">
                 <MenuItem Header="_New Test">
                     <MenuItem x:Name="LoadTicket" Header="Ticket"/>
-                    <MenuItem x:Name="LoadTicketList" Header="TicketList"/>
+                    <MenuItem x:Name="LoadTable" Header="TableView"/>
                     <MenuItem x:Name="LoadArticle" Header="Article"/>
                 </MenuItem>
 
