@@ -8,7 +8,7 @@
              d:DesignHeight="450" d:DesignWidth="919"
              Background="#2E2E2E"
              Foreground="WhiteSmoke"
-             FontSize="22">
+             FontSize="18">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -20,21 +20,19 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions>
-        
-        
-        
+                 
         <TextBlock Text="TableView" FontWeight="Bold" FontSize="22" 
                    HorizontalAlignment="Left" 
                    VerticalAlignment="Center"
                    Margin="13"/>
         <StackPanel Grid.Column="0" Grid.Row="0" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Right">
-            <Button Content="load table" Margin="22" HorizontalAlignment="Center"/>
-            <Button Content="refresh" Margin="22" HorizontalAlignment="Left"/>
+            <Button Content="refresh" Margin="22" HorizontalAlignment="Left" x:Name="RefreshTable"/>
         </StackPanel>
 
         <DataGrid Grid.Row="1" Grid.RowSpan="2" AutoGenerateColumns="False" Margin="12" 
                   ItemsSource="{Binding TicketList}"
                   Width="900">
+            <!--datagrid-->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" MinWidth="12" Width="50"/>
                 <DataGridTextColumn Header="Number" Binding="{Binding Number}" Width="100"/>
@@ -42,10 +40,9 @@
                 <DataGridTextColumn Header="Group" Binding="{Binding Group}" Width="100"/>
                 <DataGridTextColumn Header="State" Binding="{Binding State}" Width="100"/>
                 <DataGridTextColumn Header="Priority" Binding="{Binding Priority}" Width="100" />
-                <DataGridTextColumn Header="Created at" Binding="{Binding Created_at}" Width="200"/>
-
-                <DataGridTemplateColumn Header="Options"
-                                        >
+                <DataGridTextColumn Header="Created at" Binding="{Binding Created_at}" Width="220"/>
+                
+                <DataGridTemplateColumn Header="Options">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Edit" Click="EditButton_Click"/>

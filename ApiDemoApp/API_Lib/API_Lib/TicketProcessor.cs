@@ -58,7 +58,7 @@ namespace API_Lib
         // table
         public async Task<List<TicketModel>> LoadTickets(string apiUrl, string apiToken)
         {
-            string url = $"{apiUrl}/api/v1/tickets?expand=false";
+            string url = $"{apiUrl}/api/v1/tickets?expand=true";
 
             using (HttpClient client = new HttpClient())
             {
