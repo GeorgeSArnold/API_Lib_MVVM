@@ -216,7 +216,7 @@ namespace TicketUI.ViewModels
                     // get body > latest article > Body > UI
                     Body = GetBodyfromArticle(latestArticle);
                     ArticleId = latestArticle.Id;
-
+                    Console.WriteLine($"Latest Article Id: {latestArticle.Id}");
                     // check
                     await Console.Out.WriteLineAsync($"# Body: {Body}");
                 }

@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="555" d:DesignWidth="800"
              Background="#2E2E2E"
-             Foreground="WhiteSmoke"
+             Foreground="AliceBlue"
              FontSize="22">
 
     <Grid>

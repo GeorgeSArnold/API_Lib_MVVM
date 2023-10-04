@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:TicketUI.Views"
         mc:Ignorable="d"
         ResizeMode="CanResizeWithGrip"
-        Title="ShellView" Height="675" Width="967"
+        Title="ShellView" Height="682" Width="967"
         WindowStartupLocation="CenterScreen"
-        Background="#2E2E2E"
+        Background="#333333"
         >
     <Grid>
 
@@ -19,8 +19,8 @@
 
         <DockPanel>
             <Menu DockPanel.Dock="Top" FontSize="17"
-                  Foreground="#579F3B"
-                  Background="#424242">
+                  Foreground="#107C10"
+                  Background="#333333">
                 <MenuItem Header="_New Test"
                           Background="#2E2E2E">
                     <MenuItem x:Name="LoadTicket" Header="Ticket"
@@ -29,18 +29,21 @@
                                Background="#424242"/>
                     <MenuItem x:Name="LoadArticle" Header="Article"
                              Background="#2E2E2E"/>
+                    <MenuItem x:Name="LoadRTxtBox" Header="RichTextBox"
+                               Background="#424242"/>
                 </MenuItem>
 
                 <MenuItem Header="Options"
-                          Background="#2E2E2E">
+                          Background="#333333">
                     <MenuItem x:Name="LoadConnection" Header="Connections"
                               Background="#424242"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
+        
+        <!--view content-->
         <Grid Grid.Row="2" Margin="10">
             <ContentControl x:Name="ActiveItem"/>
         </Grid>
-
     </Grid>
 </Window>

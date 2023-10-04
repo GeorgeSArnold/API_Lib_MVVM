@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="919"
              Background="#2E2E2E"
-             Foreground="WhiteSmoke"
+             Foreground="AliceBlue"
              FontSize="18">
     <Grid>
         <Grid.RowDefinitions>
@@ -31,7 +31,9 @@
 
         <DataGrid Grid.Row="1" Grid.RowSpan="2" AutoGenerateColumns="False" Margin="12" 
                   ItemsSource="{Binding TicketList}"
-                  Width="900">
+                  Width="900"
+                  Background="#424242"
+                  Foreground="#1E1E1E">
             <!--datagrid-->
             <DataGrid.Columns>
                 <DataGridTextColumn Header="ID" Binding="{Binding Id}" MinWidth="12" Width="50"/>
