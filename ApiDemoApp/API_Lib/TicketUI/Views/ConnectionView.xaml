@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:TicketUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="555" d:DesignWidth="800"
-             Background="White"
+             Background="#2E2E2E"
+             Foreground="WhiteSmoke"
              FontSize="22">
 
     <Grid>
@@ -17,18 +18,35 @@
         
         <StackPanel Grid.Row="0">
             <TextBlock Text="Server IP:" Margin="10"/>
-            <TextBox x:Name="ServerIp" Text="{Binding ServerIp}" Margin="10"/>
+            <TextBox x:Name="ServerIp" Text="{Binding ServerIp}" Margin="10"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"
+                     HorizontalAlignment="Left"/>
             <TextBlock Text="Zammad Token:" Margin="10"/>
-            <TextBox x:Name="tokenTextBox" Text="{Binding ZammadToken}" Margin="10"/>
-            <Button Content="Save Connection Details" x:Name="SaveConnectionDetails" Margin="10"/>
+            <!--"tokenTextBox"-->
+            <TextBox x:Name="ZammadToken" Text="{Binding ZammadToken}" Margin="10"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="760"
+                     HorizontalAlignment="Left"/>
+            <Button Content="Save Connection Details" x:Name="SaveConnectionDetails" Margin="10" Width="333" HorizontalAlignment="Left"/>
         </StackPanel>
 
         <StackPanel Grid.Row="1">
             <TextBlock Text="Loaded Server IP:" Margin="10"/>
-            <TextBox x:Name="LoadedServerIp" Text="{Binding LoadedServerIp}" Margin="10"/>
+            <TextBox x:Name="LoadedServerIp" Text="{Binding LoadedServerIp}" Margin="10"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"
+                     HorizontalAlignment="Left"/>
             <TextBlock Text="Loaded Zammad Token:" Margin="10"/>
-            <TextBox x:Name="LoadedZammadToken" Text="{Binding LoadedZammadToken}" Margin="10"/>
-            <Button Content="Load Connection Details" x:Name="LoadConnectionDetails" Margin="10"/>
+            <TextBox x:Name="LoadedZammadToken" Text="{Binding LoadedZammadToken}" Margin="10"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="760"
+                     HorizontalAlignment="Left"/>
+            <Button Content="Load Connection Details" x:Name="LoadConnectionDetails" Margin="10" Width="333" HorizontalAlignment="Left"/>
         </StackPanel>
     </Grid>
 </UserControl>

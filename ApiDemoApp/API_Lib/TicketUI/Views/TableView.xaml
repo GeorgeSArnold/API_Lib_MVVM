@@ -6,8 +6,8 @@
              xmlns:local="clr-namespace:TicketUI.Views"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="919"
-             Background="White"
-             
+             Background="#2E2E2E"
+             Foreground="WhiteSmoke"
              FontSize="22">
     <Grid>
         <Grid.RowDefinitions>

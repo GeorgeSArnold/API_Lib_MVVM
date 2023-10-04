@@ -8,7 +8,8 @@
 
              mc:Ignorable="d" 
              d:DesignHeight="650" d:DesignWidth="800"
-             Background="White"
+             Background="#2E2E2E"
+             Foreground="WhiteSmoke"
              FontSize="15">
     <Grid>
         <Grid.RowDefinitions>
@@ -41,63 +42,105 @@
                 x:Name="TicketId"
                 Width="33"
                 Height="23"
-                Background="White"/>
+                Background="#3D3D3D"
+                Foreground="WhiteSmoke"/>
         </StackPanel>
 
         <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="1"
             Margin="10">
             <TextBlock Text="ID:"/>
-            <TextBox x:Name="Id" />
+            <TextBox x:Name="Id"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="2"
             Margin="10">
             <TextBlock Text="Number:"/>
-            <TextBox x:Name="Number"/>
+            <TextBox x:Name="Number"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="3" 
             Margin="10">
             <TextBlock Text="Title:"/>
-            <TextBox x:Name="Title"/>
+            <TextBox x:Name="Title"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="4" 
             Margin="10">
             <TextBlock Text="Group:"/>
-            <TextBox x:Name="Group"/>
+            <TextBox x:Name="Group"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="5" 
             Margin="10">
             <TextBlock Text="State:"/>
-            <TextBox x:Name="State"/>
+            <TextBox x:Name="State"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="6" 
             Margin="10">
             <TextBlock Text="Priority:"/>
-            <TextBox x:Name="Priority"/>
+            <TextBox x:Name="Priority"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
         <StackPanel 
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="7" 
-            Margin="10">
+            Margin="10"
+            >
             <TextBlock Text="Created_at:"/>
-            <TextBox x:Name="Created_at" Text="{Binding Created_at}"/>
+            <TextBox x:Name="Created_at" Text="{Binding Created_at}"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
 
-        <StackPanel 
+        <StackPanel
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Left"
             Grid.Row="8" 
             Margin="10">
             <TextBlock Text="Article_ids:"/>
-            <TextBox x:Name="ArticleIdsString" Text="{Binding ArticleIdsString}"/>
+            <TextBox x:Name="ArticleIdsString" Text="{Binding ArticleIdsString}"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="250"/>
         </StackPanel>
     </Grid>
 </UserControl>

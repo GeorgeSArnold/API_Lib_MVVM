@@ -117,7 +117,6 @@ namespace TicketUI.ViewModels
             }
         }
 
-
         public string ArticleIdsString
         {
             get { return articleIdsString; }
@@ -167,15 +166,15 @@ namespace TicketUI.ViewModels
                 // check loaded ticket
                 if (ticket != null)
                 {
-                    Console.WriteLine($"ticket id:{ticketId} loaded:");
-                    Console.WriteLine($"ID: {ticket.Id}");
-                    Console.WriteLine($"Number: {ticket.Number}");
-                    Console.WriteLine($"Title: {ticket.Title}");
-                    Console.WriteLine($"Group: {ticket.Group}");
-                    Console.WriteLine($"State: {ticket.State}");
-                    Console.WriteLine($"Priority: {ticket.Priority}");
-                    Console.WriteLine($"Created_ad: {ticket.Created_at}");
-                    Console.WriteLine($"Article_ids: {ticket.Article_ids}");
+                    Console.WriteLine($"# input Id:{ticketId} ");
+                    Console.WriteLine($"# Id: {ticket.Id}");
+                    Console.WriteLine($"# Number: {ticket.Number}");
+                    Console.WriteLine($"# Title: {ticket.Title}");
+                    Console.WriteLine($"# Group: {ticket.Group}");
+                    Console.WriteLine($"# State: {ticket.State}");
+                    Console.WriteLine($"# Priority: {ticket.Priority}");
+                    Console.WriteLine($"# Created_ad: {ticket.Created_at}");
+                    Console.WriteLine($"# Article_ids: {ticket.Article_ids.ToString()}");
 
                     Id = ticket.Id;
                     Number = ticket.Number;

@@ -27,8 +27,6 @@ namespace API_Lib
             }
         }
 
-        // api gets
-
         // ticket
         public async Task<TicketModel> LoadTicket(int ticketId,string apiUrl, string apiToken)
         {
@@ -58,7 +56,7 @@ namespace API_Lib
         }
 
         // table
-        public async Task<List<TicketModel>> LoadTable(string apiUrl, string apiToken)
+        public async Task<List<TicketModel>> LoadTickets(string apiUrl, string apiToken)
         {
             string url = $"{apiUrl}/api/v1/tickets?expand=false";
 
@@ -83,6 +81,7 @@ namespace API_Lib
         }
 
         // article
+        // load article > id
 
     }
 }

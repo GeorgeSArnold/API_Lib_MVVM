@@ -5,25 +5,36 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicketUI.Views"
         mc:Ignorable="d"
-        Title="ShellView" Height="850" Width="1024"
-        WindowStartupLocation="CenterScreen">
+        ResizeMode="CanResizeWithGrip"
+        Title="ShellView" Height="675" Width="967"
+        WindowStartupLocation="CenterScreen"
+        Background="#2E2E2E"
+        >
     <Grid>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <DockPanel>
-            <Menu DockPanel.Dock="Top" FontSize="18">
-                <MenuItem Header="_New Test">
-                    <MenuItem x:Name="LoadTicket" Header="Ticket"/>
-                    <MenuItem x:Name="LoadTable" Header="TableView"/>
-                    <MenuItem x:Name="LoadArticle" Header="Article"/>
+            <Menu DockPanel.Dock="Top" FontSize="17"
+                  Foreground="DarkGreen"
+                  Background="#424242">
+                <MenuItem Header="_New Test"
+                          Background="#2E2E2E">
+                    <MenuItem x:Name="LoadTicket" Header="Ticket"
+                              Background="#2E2E2E"/>
+                    <MenuItem x:Name="LoadTable" Header="TableView"
+                               Background="#424242"/>
+                    <MenuItem x:Name="LoadArticle" Header="Article"
+                             Background="#2E2E2E"/>
                 </MenuItem>
 
-                <MenuItem Header="Options">
-                    <MenuItem x:Name="LoadConnection" Header="Connections"/>
+                <MenuItem Header="Options"
+                          Background="#2E2E2E">
+                    <MenuItem x:Name="LoadConnection" Header="Connections"
+                              Background="#424242"/>
                 </MenuItem>
             </Menu>
         </DockPanel>
