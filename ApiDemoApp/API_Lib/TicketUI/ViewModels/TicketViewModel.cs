@@ -107,6 +107,7 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // output < api
         public List<int> Article_ids
         {
             get { return article_ids; }
@@ -116,7 +117,8 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => Article_ids);
             }
         }
-
+        
+        // output > UI
         public string ArticleIdsString
         {
             get { return articleIdsString; }
@@ -139,7 +141,6 @@ namespace TicketUI.ViewModels
             Article_ids = articleIds;
             UpdateArticleIdsString();
         }
-
         #endregion
 
         // load ticket

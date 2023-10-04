@@ -12,10 +12,17 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="auto"/>
         </Grid.RowDefinitions>
 
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!--ticket-->
         <StackPanel
             Orientation="Horizontal"
             Grid.Row="0"
@@ -24,23 +31,104 @@
                 FontSize="18"
                 Text="Ticket Properties"/>
             <Button
-                Margin="30">Get Ticket Infos</Button>
+                x:Name="LoadTicketAndPrint"
+                Margin="10"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left">Load Ticket</Button>
             <TextBlock
-                FontSize="18"
-                Text="Post:"/>
+                FontSize="15"
+                Text="Ticket ID:"/>
             <TextBox
-                Width="400"
-                Height="30"
-                Background="LightGray"/>
+                x:Name="TicketId"
+                Width="33"
+                Height="23"
+                Background="#3D3D3D"
+                Foreground="WhiteSmoke"/>
         </StackPanel>
 
-        <StackPanel
-            Grid.Row="1"
-            Margin="10">
-            <TextBlock Text="Id:"/>
-            <TextBox Text="{Binding Id}" IsReadOnly="True"/>
+        <StackPanel Grid.Row="1" Grid.Column="0">
+            <TextBlock Text="Id:" Margin="5"/>
+            <TextBox x:Name="Id"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Width="100"
+                     Height="23"
+                     Margin="5"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"/>
+
+            <TextBlock Text="Number:" Margin="5"/>
+            <TextBox x:Name="Number"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Width="100"
+                     Height="23"
+                     Margin="5"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"/>
+
+            <TextBlock Text="Title:" Margin="5"/>
+            <TextBox x:Name="Title"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Width="100"
+                     Height="23"
+                     Margin="5"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"/>
+
+            <TextBlock Text="Article_ids:" Margin="5"/>
+            <TextBox x:Name="ArticleIdsString"
+                     VerticalAlignment="Top"
+                     HorizontalAlignment="Left"
+                     Width="100"
+                     Height="23"
+                     Margin="5"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"/>
         </StackPanel>
-        
-        
+
+        <!--article-->
+        <StackPanel 
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Orientation="Vertical"
+                    Margin="10">
+
+            <TextBlock
+                FontSize="18"
+                Text="Article Properties"/>
+            <Button
+                x:Name="LoadLatestArticle"
+                HorizontalAlignment="Left"
+                Margin="10">Load latest Article</Button>
+
+        </StackPanel>
+             
+        <!--ticket props-->
+        <StackPanel Grid.Row="1" Grid.Column="1"
+                    HorizontalAlignment="Left"
+                    VerticalAlignment="Center"
+                    Margin="10"
+                    Grid.ColumnSpan="3">
+            <TextBlock Text="Article Id:" Margin="5"/>
+            <TextBox x:Name="ArticleId"
+                     VerticalAlignment="Bottom"
+                     HorizontalAlignment="Left"
+                     Width="100"
+                     Height="23"
+                     Margin="5"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"/>
+            <TextBlock Text="Article Body:"/>
+            <TextBox x:Name="Body"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="350"
+                     Height="200"
+                     Margin="5">
+            </TextBox>
+        </StackPanel>
+
     </Grid>
 </UserControl>

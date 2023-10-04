@@ -1,14 +1,9 @@
-﻿using Caliburn.Micro;
+﻿using API_Lib;
+using API_Lib.Models;
+using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using API_Lib.Models;
-using API_Lib;
-using System.Text.RegularExpressions;
-using System.Windows;
-using System.Security.Cryptography.X509Certificates;
 
 namespace TicketUI.ViewModels
 {

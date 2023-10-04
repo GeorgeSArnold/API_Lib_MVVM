@@ -27,7 +27,7 @@ namespace API_Lib
             }
         }
 
-        // ticket
+        // ticket > id
         public async Task<TicketModel> LoadTicket(int ticketId,string apiUrl, string apiToken)
         {
             if (ticketId <= 0)
@@ -55,7 +55,7 @@ namespace API_Lib
             }
         }
 
-        // table
+        // ticket > list > datagrid
         public async Task<List<TicketModel>> LoadTickets(string apiUrl, string apiToken)
         {
             string url = $"{apiUrl}/api/v1/tickets?expand=true";
@@ -82,6 +82,29 @@ namespace API_Lib
 
         // article
         // load article > id
+        public async Task<List<ArticleModel>> LoadArticles(int ticketId, string apiUrl, string apiToken)
+        {
+            string url = $"{apiUrl}/api/v1/ticket_articles/by_ticket/{ticketId}";
+
+            using (HttpClient client = new HttpClient())
+            {
+                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", apiToken);
+
+                using (HttpResponseMessage response = await client.GetAsync(url))
+                {
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var ticketsJson = await response.Content.ReadAsStringAsync();
+                        List<ArticleModel> articles = JsonConvert.DeserializeObject<List<ArticleModel>>(ticketsJson);
+                        return articles;
+                    }
+                    else
+                    {
+                        throw new Exception($"Failed to load articles. Status code: {response.StatusCode}");
+                    }
+                }
+            }
+        }
 
     }
 }
