@@ -23,10 +23,13 @@ namespace TicketUI.ViewModels
         private string state;
         private string priority;
         private string created_at;
+
+        // output < api
         private List<int> article_ids;
+        // output > UI
         private string articleIdsString;
 
-        // ticket props
+        // input < UI
         public int TicketId
         {
             get { return ticketId; }
@@ -37,6 +40,7 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // ticket props
         public int Id
         {
             get { return id; }

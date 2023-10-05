@@ -15,9 +15,7 @@ namespace TicketUI.ViewModels
         //private string serverIp = "http://192.168.150.151";
         //private string zammadToken = "NeCpzB3EXJCZNLck-CKNbWK8sZ-BhK59mPrhpsVilAN8M22xbeAr9_xiqKLcY-ZB";
 
-        private string serverIp;
-        private string zammadToken;
-
+        // server ip
         public string ServerIp
         {
             get { return serverIp; }
@@ -27,7 +25,9 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => ServerIp);
             }
         }
-
+        private string serverIp;
+         
+        // zammad
         public string ZammadToken
         {
             get { return zammadToken; }
@@ -37,9 +37,21 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => ZammadToken);
             }
         }
+        private string zammadToken;
 
-        // loaded props
-        private string loadedServerIp;
+        // gpt
+        public string GptToken
+        {
+            get { return gptToken; }
+            set
+            {
+                gptToken = value;
+                NotifyOfPropertyChange(() => GptToken);
+            }
+        }
+        private string gptToken;
+
+        // loaded ip
         public string LoadedServerIp
         {
             get { return loadedServerIp; }
@@ -49,8 +61,9 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => LoadedServerIp);
             }
         }
+        private string loadedServerIp;
 
-        private string loadedZammadToken;
+        // loaded zammad
         public string LoadedZammadToken
         {
             get { return loadedZammadToken; }
@@ -60,22 +73,41 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => LoadedZammadToken);
             }
         }
+        private string loadedZammadToken;
 
+        // loaded gpt
+        public string LoadedGptToken
+        {
+            get { return loadedGptToken; }
+            set
+            {
+                loadedGptToken = value;
+                NotifyOfPropertyChange(() => LoadedGptToken);
+            }
+        }
+        private string loadedGptToken;
+
+        // const
         public ConnectionViewModel()
         {
             LoadConnectionDetails();
         }
-
+   
+        // gets
         public string GetServerIp()
         {
             return LoadedServerIp;
         }
-
         public string GetZammadToken()
         {
             return LoadedZammadToken;
         }
+        public string GetGptToken()
+        {
+            return LoadedZammadToken;
+        }
 
+        // save & load
         public void SaveConnectionDetails()
         {
             try
@@ -83,7 +115,8 @@ namespace TicketUI.ViewModels
                 var connectionDetails = new
                 {
                     ServerIp,
-                    ZammadToken
+                    ZammadToken,
+                    GptToken
                 };
 
                 string json = JsonConvert.SerializeObject(connectionDetails);
@@ -95,7 +128,6 @@ namespace TicketUI.ViewModels
                 MessageBox.Show("Error saving connection details: " + ex.Message);
             }
         }
-
         public void LoadConnectionDetails()
         {
             try
@@ -107,8 +139,14 @@ namespace TicketUI.ViewModels
 
                     LoadedServerIp = connectionDetails.ServerIp;
                     LoadedZammadToken = connectionDetails.ZammadToken;
+                    LoadedGptToken = connectionDetails.GptToken;
 
-                    MessageBox.Show("Connection details loaded successfully!");
+                    // check
+                    Console.WriteLine($@"# Server Ip loaded: {LoadedServerIp}
+# Zammad Token > OK
+# Gpt Token > OK");
+
+                    //MessageBox.Show("Connection details loaded successfully!");
                 }
                 else
                 {

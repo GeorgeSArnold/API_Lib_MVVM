@@ -7,8 +7,10 @@ using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using TicketUI.ViewModels;
+using TicketUI.Views;
 
 namespace TicketUI.ViewModels
 {
@@ -23,17 +25,14 @@ namespace TicketUI.ViewModels
         {
             ActivateItemAsync(new TicketViewModel());
         }
-
         public void LoadArticle()
         {
             ActivateItemAsync(new ArticleViewModel());
         }
-
         public void LoadConnection()
         {
             ActivateItemAsync(new ConnectionViewModel());
         }
-
         public void LoadTable()
         {
             ActivateItemAsync(new TableViewModel());
@@ -41,6 +40,11 @@ namespace TicketUI.ViewModels
         public void LoadRTxtBox()
         {
             ActivateItemAsync(new RTxtBoxViewModel());
+        }
+        public void LoadEdit()
+        {
+            EditView ev = new EditView();
+            ev.Show();
         }
     }
 }

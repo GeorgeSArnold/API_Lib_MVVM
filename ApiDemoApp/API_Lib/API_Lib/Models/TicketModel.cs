@@ -9,7 +9,7 @@ namespace API_Lib.Models
 {
     public class TicketModel : INotifyPropertyChanged
     {
-        // Table properties
+        // props
         public int Id { get; set; }
         public int Number { get; set; }
         public string Title { get; set; }
@@ -18,7 +18,7 @@ namespace API_Lib.Models
         public string Priority { get; set; }
         public string Created_at { get; set; }
 
-        // Backend properties
+        // article ids = (list<int>) > strings
         private List<int> _articleIds;
         public List<int> Article_ids
         {
@@ -31,6 +31,7 @@ namespace API_Lib.Models
             }
         }
 
+        // backend props
         private string _articleIdsString;
         public string ArticleIdsString
         {
@@ -42,23 +43,24 @@ namespace API_Lib.Models
             }
         }
 
+        // const
         public TicketModel()
         {
             Article_ids = new List<int>();
             UpdateArticleIdsString();
         }
 
+        // methods
         private void UpdateArticleIdsString()
         {
             ArticleIdsString = string.Join(", ", Article_ids);
         }
 
+        // event handler
         public event PropertyChangedEventHandler PropertyChanged;
-
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
     }
-
 }

@@ -8,16 +8,16 @@
         ResizeMode="CanResizeWithGrip"
         Title="ShellView" Height="682" Width="967"
         WindowStartupLocation="CenterScreen"
-        Background="#333333"
-        >
-    <Grid>
+        Background="#333333">
 
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <DockPanel>
+            <!--tests-->
             <Menu DockPanel.Dock="Top" FontSize="17"
                   Foreground="#107C10"
                   Background="#333333">
@@ -31,8 +31,11 @@
                              Background="#2E2E2E"/>
                     <MenuItem x:Name="LoadRTxtBox" Header="RichTextBox"
                                Background="#424242"/>
+                    <MenuItem x:Name="LoadEdit" Header="EditTicket"
+                              Background="#2E2E2E"/>
                 </MenuItem>
-
+                
+                <!--options-->
                 <MenuItem Header="Options"
                           Background="#333333">
                     <MenuItem x:Name="LoadConnection" Header="Connections"

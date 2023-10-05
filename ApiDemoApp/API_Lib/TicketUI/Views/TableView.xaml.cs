@@ -1,6 +1,8 @@
-﻿using System;
+﻿using API_Lib.Models;
+using System;
 using System.Windows;
 using System.Windows.Controls;
+using TicketUI.ViewModels;
 
 namespace TicketUI.Views
 {
@@ -16,7 +18,19 @@ namespace TicketUI.Views
 
         private void EditButton_Click(object sender, RoutedEventArgs e)
         {
-            throw new NotImplementedException();
+            TicketModel selectedTicket = (TicketModel)MyDataGrid.SelectedItem;
+
+            if (selectedTicket != null)
+            {
+                EditView ev = new EditView();
+                EditViewModel editViewModel = new EditViewModel(selectedTicket);
+                ev.DataContext = editViewModel;
+                ev.Show();
+            }
+            else
+            {
+                MessageBox.Show("please choose ticket");
+            }
         }
     }
 }

@@ -15,17 +15,25 @@
             <RowDefinition Height="auto"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        
+
         <StackPanel Grid.Row="0">
-            <TextBlock Text="Server IP:" Margin="10"/>
-            <TextBox x:Name="ServerIp" Text="{Binding ServerIp}" Margin="10"
+            <TextBlock Text="Server IP:" Margin="3"/>
+            <TextBox x:Name="ServerIp" Text="{Binding ServerIp}" Margin="3"
                      Background="#3D3D3D"
                      Foreground="WhiteSmoke"
                      Width="250"
                      HorizontalAlignment="Left"/>
-            <TextBlock Text="Zammad Token:" Margin="10"/>
-            <!--"tokenTextBox"-->
-            <TextBox x:Name="ZammadToken" Text="{Binding ZammadToken}" Margin="10"
+            <TextBlock Text="Zammad Token:" Margin="3"/>
+            <!--zammad token-->
+            <TextBox x:Name="ZammadToken" Text="{Binding ZammadToken}" Margin="2"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="760"
+                     HorizontalAlignment="Left"/>
+
+            <!--gpt token-->
+            <TextBlock Text="ChatGPT Token:" Margin="3"/>
+            <TextBox x:Name="GptToken" Text="{Binding GptToken}" Margin="3"
                      Background="#3D3D3D"
                      Foreground="WhiteSmoke"
                      Width="760"
@@ -33,21 +41,27 @@
             <Button Content="Save Connection Details" x:Name="SaveConnectionDetails" Margin="10" Width="333" HorizontalAlignment="Left"/>
         </StackPanel>
 
+        <!--loaded fields-->
         <StackPanel Grid.Row="1">
-            <TextBlock Text="Loaded Server IP:" Margin="10"/>
-            <TextBox x:Name="LoadedServerIp" Text="{Binding LoadedServerIp}" Margin="10"
+            <TextBlock Text="Loaded Server IP:" Margin="3"/>
+            <TextBox x:Name="LoadedServerIp" Text="{Binding LoadedServerIp}" Margin="3"
                      Background="#3D3D3D"
                      Foreground="WhiteSmoke"
                      Width="250"
                      HorizontalAlignment="Left"/>
-            <TextBlock Text="Loaded Zammad Token:" Margin="10"/>
-            <TextBox x:Name="LoadedZammadToken" Text="{Binding LoadedZammadToken}" Margin="10"
+            <TextBlock Text="Loaded Zammad Token:" Margin="3"/>
+            <TextBox x:Name="LoadedZammadToken" Text="{Binding LoadedZammadToken}" Margin="3"
                      Background="#3D3D3D"
                      Foreground="WhiteSmoke"
                      Width="760"
                      HorizontalAlignment="Left"/>
-            <Button Content="Load Connection Details" x:Name="LoadConnectionDetails" Margin="10" Width="333" HorizontalAlignment="Left"/>
+            <TextBlock Text="Loaded ChatGPT Token:" Margin="3"/>
+            <TextBox x:Name="LoadedChatGPTToken" Text="{Binding LoadedGptToken}" Margin="3"
+                     Background="#3D3D3D"
+                     Foreground="WhiteSmoke"
+                     Width="760"
+                     HorizontalAlignment="Left"/>
+            <Button Content="Check Connection Details" x:Name="LoadConnectionDetails" Margin="10" Width="333" HorizontalAlignment="Left"/>
         </StackPanel>
     </Grid>
 </UserControl>
-

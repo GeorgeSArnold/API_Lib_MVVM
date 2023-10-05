@@ -15,7 +15,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--row1-->
+        <!--row0-->
         <StackPanel Grid.Row="0"
                     Orientation="Horizontal">
             <TextBlock Margin="10"
@@ -24,12 +24,12 @@
                 RichTextBox
             </TextBlock>
             <Button
-                Margin="55,6,0,0"
+                Margin="10"
                 HorizontalAlignment="Right">Button
             </Button>
 
             <Button
-                Margin="55,6,0,0"
+                Margin="10"
                 HorizontalAlignment="Right">Button
             </Button>
         </StackPanel>

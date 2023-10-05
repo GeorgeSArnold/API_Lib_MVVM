@@ -3,14 +3,23 @@ using API_Lib.Models;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace TicketUI.ViewModels
 {
     public class TableViewModel : Screen
     {
-        private BindableCollection<TicketModel> ticketList;
+        // datagrid
+        private DataGrid myDataGrid;
+        public DataGrid MyDataGrid
+        {
+            get { return myDataGrid; }
+            set { myDataGrid = value; }
+        }
 
+        // tickets
         public BindableCollection<TicketModel> TicketList
         {
             get { return ticketList; }
@@ -20,12 +29,14 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => TicketList);
             }
         }
+        private BindableCollection<TicketModel> ticketList;
 
-        // const
+        //const
         public TableViewModel()
         {
             LoadDataTable();
         }
+
 
         // load data
         public async Task LoadDataTable()

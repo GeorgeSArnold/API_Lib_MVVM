@@ -1,23 +1,19 @@
-﻿using API_Lib.Models;
-using API_Lib;
+﻿using API_Lib;
+using API_Lib.Models;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Security.Cryptography.X509Certificates;
-using System.Windows.Documents;
-using System.Text.RegularExpressions;
 
 namespace TicketUI.ViewModels
 {
-    public class ArticleViewModel : Screen
+    public class EditViewModel : Screen
     {
-        #region Ticket props + display methods
-
-        // input
+        // props
+        // input < UI
         private int ticketId;
 
         // ticket fields
@@ -27,13 +23,13 @@ namespace TicketUI.ViewModels
         private List<int> article_ids;
         private string articleIdsString;
 
+        // articleId > UI
+        private int articleId;
+        
         // richtxtBox
         private string body;
 
-        // articleId > UI
-        private int articleId;
-
-        // input > UI
+        // input < UI
         public int TicketId
         {
             get { return ticketId; }
@@ -43,8 +39,6 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => TicketId);
             }
         }
-
-        // ticket output
         public int Id
         {
             get { return id; }
@@ -54,7 +48,6 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => Id);
             }
         }
-
         public int Number
         {
             get { return number; }
@@ -64,7 +57,6 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => Number);
             }
         }
-
         public string Title
         {
             get { return title; }
@@ -75,6 +67,8 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // output > UI
+        private List<ArticleModel> articles;
         // output < api
         public List<int> Article_ids
         {
@@ -85,7 +79,6 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => Article_ids);
             }
         }
-
         // output > UI
         public string ArticleIdsString
         {
@@ -96,75 +89,6 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => ArticleIdsString);
             }
         }
-
-        // display methods
-        // article_ids > string
-        private void UpdateArticleIdsString()
-        {
-            ArticleIdsString = string.Join(", ", Article_ids);
-        }
-
-        // update int > string
-        public void UpdateArticleIds(List<int> articleIds)
-        {
-            Article_ids = articleIds;
-            UpdateArticleIdsString();
-        }
-        // method
-        // load ticket 
-        public async Task LoadTicketAndPrint(int ticketId)
-        {
-            try
-            {
-                if (ticketId == 0)
-                {
-                    MessageBox.Show("please insert ticket id...");
-                    return;
-                }
-                // load connection
-                TicketProcessor ticketProcessor = TicketProcessor.Instance;
-
-                ConnectionViewModel cvm = new ConnectionViewModel();
-
-                string serverIP = cvm.GetServerIp();
-                string zammadToken = cvm.GetZammadToken();
-
-                // load ticket
-                TicketModel ticket = await ticketProcessor.LoadTicket(ticketId, serverIP, zammadToken);
-
-                // check loaded ticket
-                if (ticket != null)
-                {
-                    Id = ticket.Id;
-                    Number = ticket.Number;
-                    Title = ticket.Title;
-
-                    Article_ids = ticket.Article_ids;
-
-                    ArticleIdsString = string.Join(", ", Article_ids);
-                }
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine("invalid ticket id... " + ex.Message);
-            }
-        }
-        #endregion
-
-        // output > UI
-        private List<ArticleModel> articles;
-
-        // input < UI
-        public int ArticleId
-        {
-            get { return articleId; }
-            set
-            {
-                articleId = value;
-                NotifyOfPropertyChange(() => ArticleId);
-            }
-        }
-
         // output < api
         public List<ArticleModel> Articles
         {
@@ -173,6 +97,16 @@ namespace TicketUI.ViewModels
             {
                 articles = value;
                 NotifyOfPropertyChange(() => Articles);
+            }
+        }
+        // input < UI
+        public int ArticleId
+        {
+            get { return articleId; }
+            set
+            {
+                articleId = value;
+                NotifyOfPropertyChange(() => ArticleId);
             }
         }
 
@@ -187,58 +121,112 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // article methods
+        // article_ids > string
+        private void UpdateArticleIdsString()
+        {
+            ArticleIdsString = string.Join(", ", Article_ids);
+        }
+        // update int > string
+        public void UpdateArticleIds(List<int> articleIds)
+        {
+            Article_ids = articleIds;
+            UpdateArticleIdsString();
+        }
+
+        // selected ticket obj
+        public TicketModel SelectedTicket
+        {
+            get { return selectedTicket; }
+            set
+            {
+                selectedTicket = value;
+                NotifyOfPropertyChange(() => SelectedTicket);
+
+                if (selectedTicket != null) 
+                {
+                    TicketId = selectedTicket.Id;
+                    LoadLatestArticle(TicketId);
+                }
+            }
+        }
+
+        //public void LoadLatestArticleManually()
+        //{
+        //    if (SelectedTicket != null)
+        //    {
+        //        TicketId = SelectedTicket.Id;
+        //        LoadLatestArticle(TicketId);
+        //    }
+        //}
+
+        private TicketModel selectedTicket;
+
+        public EditViewModel(TicketModel ticket)
+        {
+            SelectedTicket = ticket;
+        }
+
+        // methods
         // load articles
-        public async Task LoadLatestArticle(int ticketId)
+        private async Task LoadLatestArticle(int ticketId)
         {
             try
             {
-                // articles
-                List<ArticleModel> articles = new List<ArticleModel>();
+                List<ArticleModel> articles = await LoadArticlesForTicket(ticketId);
 
-                // latest article
-                ArticleModel latestArticle = new ArticleModel();
-
-                // load connection
-                TicketProcessor ticketProcessor = TicketProcessor.Instance;
-                ConnectionViewModel cvm = new ConnectionViewModel();
-
-                // get connection
-                string serverIP = cvm.GetServerIp();
-                string zammadToken = cvm.GetZammadToken();
-
-                // load article
-                articles = await ticketProcessor.LoadArticles(ticketId, serverIP, zammadToken);
-
-                // check loaded ticket
                 if (articles != null)
                 {
-                    // get latest article
                     Articles = new List<ArticleModel>(articles);
-                    latestArticle = GetLatestArticle(articles);
-                    // get body > latest article > Body > UI
+                    ArticleModel latestArticle = GetLatestArticle(articles);
                     Body = GetBodyfromArticle(latestArticle);
+
+                    // Aktualisierung der articleIdsString
+                    ArticleIdsString = string.Join(", ", articles.Select(a => a.Id));
+
+                    // Aktualisierung der Article_ids
+                    Article_ids = articles.Select(a => a.Id).ToList();
+
                     ArticleId = latestArticle.Id;
                     Console.WriteLine($"Latest Article Id: {latestArticle.Id}");
-                    // check
                     await Console.Out.WriteLineAsync($"# Body: {Body}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("invalid article id... " + ex.Message);
+                Console.WriteLine("Fehler beim Laden der Artikel: " + ex.Message);
             }
         }
-        
+
+        private async Task<List<ArticleModel>> LoadArticlesForTicket(int ticketId)
+        {
+            try
+            {
+                TicketProcessor ticketProcessor = TicketProcessor.Instance;
+                ConnectionViewModel cvm = new ConnectionViewModel();
+
+                string serverIP = cvm.GetServerIp();
+                string zammadToken = cvm.GetZammadToken();
+
+                return await ticketProcessor.LoadArticles(ticketId, serverIP, zammadToken);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Fehler beim Laden der Artikel: " + ex.Message);
+                return null;
+            }
+        }
+
         // methods
         public ArticleModel GetLatestArticle(List<ArticleModel> articles)
         {
-            if (articles == null) 
+            if (articles == null)
             {
                 return null;
-            }           
+            }
             return articles.OrderByDescending(a => a.Id).FirstOrDefault();
         }
-        
+
         // get body
         public string GetBodyfromArticle(ArticleModel latestArticle)
         {
@@ -250,7 +238,7 @@ namespace TicketUI.ViewModels
 
             return cleanedBody;
         }
-        
+
         // remove tags
         private string RemoveHtmlTags(string input)
         {
