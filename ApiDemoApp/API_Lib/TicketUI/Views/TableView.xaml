@@ -30,9 +30,9 @@
             <Button Content="refresh" Margin="22" HorizontalAlignment="Left" x:Name="RefreshTable"/>
         </StackPanel>
 
-        <DataGrid x:Name="MyDataGrid"
+                  <!--ItemsSource="{Binding TicketList}"-->
+        <DataGrid x:Name="MyDataGrid" ItemsSource="{Binding TicketList}" SelectedItem="{Binding SelectedTicket}"
                   Grid.Row="1" Grid.RowSpan="2" AutoGenerateColumns="False" Margin="12" 
-                  ItemsSource="{Binding TicketList}"
                   Width="900"
                   Background="#424242"
                   Foreground="#1E1E1E">
@@ -50,7 +50,7 @@
                 <DataGridTemplateColumn Header="Options">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Edit" Click="EditButton_Click"/>
+                            <Button Content="Edit" Command="{Binding DataContext.EditTicketCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

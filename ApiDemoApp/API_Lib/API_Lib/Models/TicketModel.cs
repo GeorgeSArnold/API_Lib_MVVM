@@ -31,7 +31,7 @@ namespace API_Lib.Models
             }
         }
 
-        // backend props
+        // list int > string
         private string _articleIdsString;
         public string ArticleIdsString
         {
@@ -43,11 +43,24 @@ namespace API_Lib.Models
             }
         }
 
+        // max article id
+        private string _maxarticleIdsString;
+        public string MaxArticleIdsString
+        {
+            get { return _maxarticleIdsString; }
+            set
+            {
+                _maxarticleIdsString = value;
+                OnPropertyChanged(nameof(MaxArticleIdsString));
+            }
+        }
+
         // const
         public TicketModel()
         {
             Article_ids = new List<int>();
             UpdateArticleIdsString();
+            UpdateMaxArticleIdString();
         }
 
         // methods
@@ -56,11 +69,18 @@ namespace API_Lib.Models
             ArticleIdsString = string.Join(", ", Article_ids);
         }
 
-        // event handler
+        private void UpdateMaxArticleIdString()
+        {
+            // Finde die höchste Artikel-ID aus der Liste
+            int maxArticleId = Article_ids.Any() ? Article_ids.Max() : 0;
+            ArticleIdsString = maxArticleId.ToString();
+        }
+        // eventh
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 }

@@ -1,16 +1,4 @@
-﻿using API_Lib.Models;
-using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
-using System.Data.Linq;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using TicketUI.ViewModels;
-using TicketUI.Views;
+﻿using Caliburn.Micro;
 
 namespace TicketUI.ViewModels
 {
@@ -40,11 +28,6 @@ namespace TicketUI.ViewModels
         public void LoadRTxtBox()
         {
             ActivateItemAsync(new RTxtBoxViewModel());
-        }
-        public void LoadEdit()
-        {
-            EditView ev = new EditView();
-            ev.Show();
         }
     }
 }

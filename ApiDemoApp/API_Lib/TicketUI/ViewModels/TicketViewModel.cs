@@ -157,15 +157,15 @@ namespace TicketUI.ViewModels
                     MessageBox.Show("please insert ticket id...");
                     return;
                 }
-                // load connection
+                // load api obj
                 TicketProcessor ticketProcessor = TicketProcessor.Instance;
 
+                // load connection > ip,token
                 ConnectionViewModel cvm = new ConnectionViewModel();
-                
                 string serverIP = cvm.GetServerIp();
                 string zammadToken = cvm.GetZammadToken(); 
 
-                // load ticket
+                // load ticket > api
                 TicketModel ticket = await ticketProcessor.LoadTicket(ticketId, serverIP, zammadToken);
 
                 // check loaded ticket

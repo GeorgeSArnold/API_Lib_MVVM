@@ -5,7 +5,11 @@ using System;
 using System.Collections.Generic;
 using System.Net.Sockets;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
+using TicketUI.Views;
+using TicketUI.Utilitys;
 
 namespace TicketUI.ViewModels
 {
@@ -19,7 +23,7 @@ namespace TicketUI.ViewModels
             set { myDataGrid = value; }
         }
 
-        // tickets
+        // ticket list
         public BindableCollection<TicketModel> TicketList
         {
             get { return ticketList; }
@@ -34,9 +38,9 @@ namespace TicketUI.ViewModels
         //const
         public TableViewModel()
         {
+            MyDataGrid = new DataGrid();
             LoadDataTable();
         }
-
 
         // load data
         public async Task LoadDataTable()
@@ -94,6 +98,54 @@ namespace TicketUI.ViewModels
             TicketList.Clear();
             LoadDataTable();
             NotifyOfPropertyChange(() => TicketList);
+        }
+
+        // bind EditTicket() > UI
+        private ICommand editTicketCommand;
+        public ICommand EditTicketCommand
+        {
+            get
+            {
+                if (editTicketCommand == null)
+                    editTicketCommand = new RelayCommand(param => EditTicket());
+                return editTicketCommand;
+            }
+        }
+
+        // selected Ticket > EditView
+        private TicketModel selectedTicket;
+        public TicketModel SelectedTicket
+        {
+            get { return selectedTicket; }
+            set
+            {
+                selectedTicket = value;
+                NotifyOfPropertyChange(() => SelectedTicket);
+            }
+        }
+
+        public TicketModel GetSelectedTicket()
+        {
+            return SelectedTicket;
+        }
+
+        public void EditTicket()
+        {
+            Console.WriteLine("# Bearbeiten geklickt");
+
+            TicketModel selectedTicket = SelectedTicket;
+
+            if (selectedTicket != null)
+            {
+                EditViewModel editViewModel = new EditViewModel(selectedTicket);
+                EditView ev = new EditView(selectedTicket);
+                ev.DataContext = editViewModel;
+                ev.Show();
+            }
+            else
+            {
+                MessageBox.Show("Bitte wählen Sie ein Ticket aus.");
+            }
         }
     }
 }

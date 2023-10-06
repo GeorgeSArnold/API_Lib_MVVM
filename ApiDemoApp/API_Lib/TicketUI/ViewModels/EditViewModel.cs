@@ -4,9 +4,12 @@ using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
+using TicketUI.Utilitys;
 
 namespace TicketUI.ViewModels
 {
@@ -67,6 +70,13 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // const
+        public EditViewModel(TicketModel ticket)
+        {
+            SelectedTicket = ticket;
+            LoadLatestArticleBody();
+        }
+
         // output > UI
         private List<ArticleModel> articles;
         // output < api
@@ -100,13 +110,13 @@ namespace TicketUI.ViewModels
             }
         }
         // input < UI
-        public int ArticleId
+        public int CurrentArticleId
         {
             get { return articleId; }
             set
             {
                 articleId = value;
-                NotifyOfPropertyChange(() => ArticleId);
+                NotifyOfPropertyChange(() => CurrentArticleId);
             }
         }
 
@@ -135,6 +145,7 @@ namespace TicketUI.ViewModels
         }
 
         // selected ticket obj
+        private TicketModel selectedTicket;
         public TicketModel SelectedTicket
         {
             get { return selectedTicket; }
@@ -146,49 +157,38 @@ namespace TicketUI.ViewModels
                 if (selectedTicket != null) 
                 {
                     TicketId = selectedTicket.Id;
-                    LoadLatestArticle(TicketId);
+
+                    //LoadLatestArticleBody();
                 }
             }
         }
 
-        //public void LoadLatestArticleManually()
-        //{
-        //    if (SelectedTicket != null)
-        //    {
-        //        TicketId = SelectedTicket.Id;
-        //        LoadLatestArticle(TicketId);
-        //    }
-        //}
-
-        private TicketModel selectedTicket;
-
-        public EditViewModel(TicketModel ticket)
-        {
-            SelectedTicket = ticket;
-        }
-
-        // methods
-        // load articles
-        private async Task LoadLatestArticle(int ticketId)
+        public async Task LoadLatestArticleBody()
         {
             try
             {
-                List<ArticleModel> articles = await LoadArticlesForTicket(ticketId);
+                List<ArticleModel> articles = await LoadAllArticlesFromTicket(TicketId);
 
                 if (articles != null)
                 {
+                    // 
                     Articles = new List<ArticleModel>(articles);
                     ArticleModel latestArticle = GetLatestArticle(articles);
-                    Body = GetBodyfromArticle(latestArticle);
+                    Body = CleanBodyFromTags(latestArticle);
 
-                    // Aktualisierung der articleIdsString
+
                     ArticleIdsString = string.Join(", ", articles.Select(a => a.Id));
 
-                    // Aktualisierung der Article_ids
                     Article_ids = articles.Select(a => a.Id).ToList();
 
-                    ArticleId = latestArticle.Id;
-                    Console.WriteLine($"Latest Article Id: {latestArticle.Id}");
+                    if (articles.Count > 0)
+                    {
+                        CurrentArticleId = articles.OrderByDescending(a => a.Id).First().Id;
+                        Console.WriteLine($"Latest Article Id: {CurrentArticleId}");
+                    }
+
+                    CurrentArticleId = latestArticle.Id;
+                    Console.WriteLine($"Latest Article Id: {CurrentArticleId}");
                     await Console.Out.WriteLineAsync($"# Body: {Body}");
                 }
             }
@@ -198,7 +198,7 @@ namespace TicketUI.ViewModels
             }
         }
 
-        private async Task<List<ArticleModel>> LoadArticlesForTicket(int ticketId)
+        private async Task<List<ArticleModel>> LoadAllArticlesFromTicket(int ticketId)
         {
             try
             {
@@ -217,18 +217,17 @@ namespace TicketUI.ViewModels
             }
         }
 
-        // methods
         public ArticleModel GetLatestArticle(List<ArticleModel> articles)
         {
-            if (articles == null)
+            if (articles == null || articles.Count == 0)
             {
                 return null;
             }
-            return articles.OrderByDescending(a => a.Id).FirstOrDefault();
+            return articles.OrderByDescending(a => a.Id).First();
         }
 
         // get body
-        public string GetBodyfromArticle(ArticleModel latestArticle)
+        public string CleanBodyFromTags(ArticleModel latestArticle)
         {
             if (latestArticle == null)
             {
@@ -243,6 +242,39 @@ namespace TicketUI.ViewModels
         private string RemoveHtmlTags(string input)
         {
             return Regex.Replace(input, "<.*?>", string.Empty);
+        }
+
+        // fields > buttons > UI
+        private ICommand getsuggestCommand;
+        public ICommand GetSuggestCommand
+        {
+            get
+            {
+                if (getsuggestCommand == null)
+                    getsuggestCommand = new RelayCommand(param => GetSuggest());
+                return getsuggestCommand;
+            }
+        }
+
+        private ICommand clearRTxtBCommand;
+        public ICommand ClearRTxtBCommand
+        {
+            get
+            {
+                if (clearRTxtBCommand == null)
+                    clearRTxtBCommand = new RelayCommand(param => ClearRTxtB());
+                return clearRTxtBCommand;
+            }
+        }
+        // button methods > UI
+        public void GetSuggest()
+        {
+            Console.WriteLine("ChatGPT Suggest Button clicked");
+        }
+
+        public void ClearRTxtB()
+        {
+            Console.WriteLine("Rich TextBox Button clicked");
         }
     }
 }

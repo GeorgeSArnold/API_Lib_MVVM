@@ -1,16 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using API_Lib.Models;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
+using TicketUI.ViewModels;
 
 namespace TicketUI.Views
 {
@@ -19,9 +9,12 @@ namespace TicketUI.Views
     /// </summary>
     public partial class EditView : Window
     {
-        public EditView()
+        public TicketModel SelectedTicket { get; set; }
+        public EditView(TicketModel selectedTicket)
         {
             InitializeComponent();
+            SelectedTicket = selectedTicket;
+            DataContext = new EditViewModel(SelectedTicket);
         }
     }
 }

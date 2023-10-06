@@ -92,32 +92,28 @@
                 FontSize="12"
                 Text="Article ID:"/>
                 <TextBox
-                x:Name="ArticleId"
-                    Text="{Binding ArticleId, Mode=OneWay}"
+                x:Name="CurrentArticleId"
+                    Text="{Binding CurrentArticleId, Mode=OneWay}"
                 Width="33"
                 Height="23"
                 Background="#3D3D3D"
                 Foreground="WhiteSmoke"/>
 
-
                 <Button
                 x:Name="GetSuggest"
                 HorizontalAlignment="Left"
-                Margin="10">Get Suggest</Button>
-
-                <Button
-                x:Name="LoadLatestArticle"
-                HorizontalAlignment="Left"
-                Margin="10">Load latest Article</Button>
+                Margin="10"
+                    Content="Get ChatGPT Suggest" Command="{Binding DataContext.GetSuggestCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
 
                 <Button
                 x:Name="Clear"
                 HorizontalAlignment="Left"
-                Margin="10">Clear</Button>
+                Margin="10"
+                    Content="Clear RichTextBox" Command="{Binding DataContext.ClearRTxtBCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
 
             </StackPanel>
             <!--row2 richtxtBox-->
-            <RichTextBox Grid.Row="2"
+            <RichTextBox Grid.Row="2"                                         
                      Margin="7"
                      Grid.Column="1"
                      Background="#2E2E2E"
@@ -126,7 +122,7 @@
                      VerticalAlignment="Stretch">
                 <FlowDocument>
                     <Paragraph>
-                        <Run Text="{Binding Body}"/>
+                        <Run x:Name="Body" Text="{Binding Body}"/>
                     </Paragraph>
                 </FlowDocument>
             </RichTextBox>
