@@ -1,0 +1,12 @@
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\bin\Debug\net6.0\Gpt_Lib.deps.json
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\bin\Debug\net6.0\Gpt_Lib.dll
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\bin\Debug\net6.0\Gpt_Lib.pdb
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.csproj.AssemblyReference.cache
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.AssemblyInfoInputs.cache
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.AssemblyInfo.cs
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.csproj.CoreCompileInputs.cache
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.dll
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\refint\Gpt_Lib.dll
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\Gpt_Lib.pdb
+C:\APIs\ApiDemoApp\API_Lib\Gpt_Lib\obj\Debug\net6.0\ref\Gpt_Lib.dll

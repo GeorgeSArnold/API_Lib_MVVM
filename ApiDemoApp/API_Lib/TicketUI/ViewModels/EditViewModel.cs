@@ -188,13 +188,12 @@ namespace TicketUI.ViewModels
                     }
 
                     CurrentArticleId = latestArticle.Id;
-                    Console.WriteLine($"Latest Article Id: {CurrentArticleId}");
                     await Console.Out.WriteLineAsync($"# Body: {Body}");
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Fehler beim Laden der Artikel: " + ex.Message);
+                Console.WriteLine("Fehler beim Laden des Artikel-Body: " + ex.Message);
             }
         }
 
@@ -266,15 +265,53 @@ namespace TicketUI.ViewModels
                 return clearRTxtBCommand;
             }
         }
+
+        private ICommand undoTextCommand;
+        public ICommand UndoTextCommand
+        {
+            get
+            {
+                if (undoTextCommand == null)
+                    undoTextCommand = new RelayCommand(param => UndoText());
+                return undoTextCommand;
+            }
+        }
+
         // button methods > UI
         public void GetSuggest()
         {
             Console.WriteLine("ChatGPT Suggest Button clicked");
         }
-
         public void ClearRTxtB()
         {
-            Console.WriteLine("Rich TextBox Button clicked");
+            if (Body != null) 
+            {
+                Body = string.Empty;
+                SaveCurrentText();
+            }
+        }
+        
+        // undo
+        private Stack<string> textUndoStack = new Stack<string>();
+        private string currentText = string.Empty;
+        public void SaveCurrentText()
+        {
+            currentText = Body;
+            textUndoStack.Push(currentText);
+        }
+        public void Undo()
+        {
+            if (textUndoStack.Count > 0) 
+            {
+                currentText = textUndoStack.Pop();
+                Body = currentText;
+            }
+        }
+        private void UndoText() 
+        {
+            Console.WriteLine("## undo btn clicked");
+            SaveCurrentText();
+            Undo();
         }
     }
 }

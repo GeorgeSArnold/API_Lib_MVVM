@@ -73,7 +73,7 @@ namespace API_Lib.Models
         {
             // Finde die höchste Artikel-ID aus der Liste
             int maxArticleId = Article_ids.Any() ? Article_ids.Max() : 0;
-            ArticleIdsString = maxArticleId.ToString();
+            MaxArticleIdsString = maxArticleId.ToString();  // Änderung hier
         }
         // eventh
         public event PropertyChangedEventHandler PropertyChanged;
@@ -81,6 +81,5 @@ namespace API_Lib.Models
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

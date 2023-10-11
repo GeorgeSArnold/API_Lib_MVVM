@@ -1,0 +1,12 @@
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\bin\Debug\net6.0\ChatGPT_API_Lib.deps.json
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\bin\Debug\net6.0\ChatGPT_API_Lib.dll
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\bin\Debug\net6.0\ChatGPT_API_Lib.pdb
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.csproj.AssemblyReference.cache
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.GeneratedMSBuildEditorConfig.editorconfig
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.AssemblyInfoInputs.cache
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.AssemblyInfo.cs
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.csproj.CoreCompileInputs.cache
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.dll
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\refint\ChatGPT_API_Lib.dll
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ChatGPT_API_Lib.pdb
+C:\APIs\ChatGpt_PromtApp\ChatGPT_PromtApp\ChatGPT_API_Lib\obj\Debug\net6.0\ref\ChatGPT_API_Lib.dll

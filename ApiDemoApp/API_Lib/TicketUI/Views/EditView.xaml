@@ -111,6 +111,12 @@
                 Margin="10"
                     Content="Clear RichTextBox" Command="{Binding DataContext.ClearRTxtBCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
 
+                <Button
+                x:Name="Undo"
+                HorizontalAlignment="Left"
+                Margin="10"
+                    Content="Undo" Command="{Binding DataContext.UndoTextCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
+
             </StackPanel>
             <!--row2 richtxtBox-->
             <RichTextBox Grid.Row="2"                                         

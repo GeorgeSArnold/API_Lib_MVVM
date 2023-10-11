@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\App.xaml
-7129014310
+9536547982
 
-21502102037
-32-551025419
-Views\ArticleView.xaml;Views\ConnectionView.xaml;Views\EditView.xaml;Views\RTxtBoxView.xaml;Views\ShellView.xaml;Views\TableView.xaml;Views\TicketView.xaml;
+25-1697971415
+332019210751
+Views\ArticleView.xaml;Views\ChatGptEditView.xaml;Views\ChatGptView.xaml;Views\ConnectionView.xaml;Views\EditView.xaml;Views\RTxtBoxView.xaml;Views\ShellView.xaml;Views\TableView.xaml;Views\TicketView.xaml;
 
-False
+True
 

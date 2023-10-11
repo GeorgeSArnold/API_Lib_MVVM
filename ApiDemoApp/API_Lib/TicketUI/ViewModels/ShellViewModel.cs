@@ -29,5 +29,9 @@ namespace TicketUI.ViewModels
         {
             ActivateItemAsync(new RTxtBoxViewModel());
         }
+        public void LoadChatGpt()
+        {
+            ActivateItemAsync(new ChatGptViewModel());
+        }
     }
 }

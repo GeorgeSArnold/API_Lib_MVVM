@@ -1,10 +1,10 @@
-﻿using API_Lib;
+﻿using System;
+using API_Lib;
 using API_Lib.Models;
 using Caliburn.Micro;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using System.Windows;
+using System.Threading.Tasks;
+using System.Collections.Generic;
 
 namespace TicketUI.ViewModels
 {

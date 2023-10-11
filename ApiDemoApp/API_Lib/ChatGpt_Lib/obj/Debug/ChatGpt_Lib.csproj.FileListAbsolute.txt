@@ -1,0 +1,6 @@
+C:\APIs\ApiDemoApp\API_Lib\ChatGpt_Lib\bin\Debug\ChatGpt_Lib.dll
+C:\APIs\ApiDemoApp\API_Lib\ChatGpt_Lib\bin\Debug\ChatGpt_Lib.pdb
+C:\APIs\ApiDemoApp\API_Lib\ChatGpt_Lib\obj\Debug\ChatGpt_Lib.csproj.AssemblyReference.cache
+C:\APIs\ApiDemoApp\API_Lib\ChatGpt_Lib\obj\Debug\ChatGpt_Lib.csproj.CoreCompileInputs.cache
+C:\APIs\ApiDemoApp\API_Lib\ChatGpt_Lib\obj\Debug\ChatGpt_Lib.dll
+C:\APIs\ApiDemoApp\API_Lib\ChatGpt_Lib\obj\Debug\ChatGpt_Lib.pdb

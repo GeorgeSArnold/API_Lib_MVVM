@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v6.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v6.0": {
+      "Gpt_Lib/1.0.0": {
+        "runtime": {
+          "Gpt_Lib.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "Gpt_Lib/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
