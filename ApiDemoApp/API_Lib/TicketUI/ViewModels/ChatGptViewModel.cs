@@ -46,6 +46,72 @@ namespace TicketUI.ViewModels
             DisplayGeneratedArticles();
         }
 
+        // bind EditTicket() > UI
+        private ICommand editTicketCommand;
+        public ICommand EditTicketCommand
+        {
+            get
+            {
+                if (editTicketCommand == null)
+                    editTicketCommand = new RelayCommand(param => EditTicket());
+                return editTicketCommand;
+            }
+        }
+
+        // selected Ticket > ChatGptEditView
+        private TicketModel selectedTicket;
+        public TicketModel SelectedTicket
+        {
+            get { return selectedTicket; }
+            set
+            {
+                selectedTicket = value;
+                NotifyOfPropertyChange(() => SelectedTicket);
+            }
+        }
+
+        // txtboxes (body, responseText) data > UI 
+        private string body;
+        public string Body
+        {
+            get { return body; }
+            set
+            {
+                body = value;
+                NotifyOfPropertyChange(() => Body);
+            }
+        }
+        private string responseText;
+        public string ResponseText
+        {
+            get { return responseText; }
+            set
+            {
+                responseText = value;
+                NotifyOfPropertyChange(() => ResponseText);
+            }
+        }
+
+        // methods
+        public ObservableCollection<ArticleModel> GenerateArticleModels(ObservableCollection<TicketModel> tickets)
+        {
+            ObservableCollection<ArticleModel> articles = new ObservableCollection<ArticleModel>();
+
+            foreach (var ticket in tickets)
+            {
+                foreach (var articleId in ticket.Article_ids)
+                {
+                    articles.Add(new ArticleModel
+                    {
+                        Id = articleId,
+                        Ticket_id = ticket.Id,
+                        Body = $"Artikel-Body für Ticket {ticket.Number}, Artikel ID {articleId}"
+                    });
+                }
+            }
+
+            return articles;
+        }
         public void LoadDummyTickets()
         {
             ObservableCollection<TicketModel> tickets = new ObservableCollection<TicketModel>
@@ -87,27 +153,6 @@ namespace TicketUI.ViewModels
 
             TicketList = tickets;
         }
-
-        public ObservableCollection<ArticleModel> GenerateArticleModels(ObservableCollection<TicketModel> tickets)
-        {
-            ObservableCollection<ArticleModel> articles = new ObservableCollection<ArticleModel>();
-
-            foreach (var ticket in tickets)
-            {
-                foreach (var articleId in ticket.Article_ids)
-                {
-                    articles.Add(new ArticleModel
-                    {
-                        Id = articleId,
-                        Ticket_id = ticket.Id,
-                        Body = $"Artikel-Body für Ticket {ticket.Number}, Artikel ID {articleId}"
-                    });
-                }
-            }
-
-            return articles;
-        }
-
         public void UpdateArticleBody(int articleId, string newBody)
         {
             var article = articlesForTickets.FirstOrDefault(a => a.Id == articleId);
@@ -116,7 +161,16 @@ namespace TicketUI.ViewModels
                 article.Body = newBody;
             }
         }
+        public void DisplayGeneratedArticles()
+        {
+            Console.WriteLine("# Generated Article Models:");
 
+            foreach (var article in articlesForTickets)
+            {
+                Console.WriteLine($"--> Article ID: {article.Id}, Ticket ID: {article.Ticket_id}, Body: {article.Body}");
+            }
+
+        }
         public void LoadArticleBodys()
         {
             // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 1
@@ -137,67 +191,9 @@ namespace TicketUI.ViewModels
             // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 6
             UpdateArticleBody(6, "Neuer Body für Artikel 6");
         }
-
-        public void DisplayGeneratedArticles()
-        {
-            Console.WriteLine("# Generated Article Models:");
-
-            foreach (var article in articlesForTickets)
-            {
-                Console.WriteLine($"--> Article ID: {article.Id}, Ticket ID: {article.Ticket_id}, Body: {article.Body}");
-            }
-
-        }
-                    // bind EditTicket() > UI
-        private ICommand editTicketCommand;
-        public ICommand EditTicketCommand
-        {
-            get
-            {
-                if (editTicketCommand == null)
-                    editTicketCommand = new RelayCommand(param => EditTicket());
-                return editTicketCommand;
-            }
-        }
-
-        // selected Ticket > ChatGptEditView
-        private TicketModel selectedTicket;
-        public TicketModel SelectedTicket
-        {
-            get { return selectedTicket; }
-            set
-            {
-                selectedTicket = value;
-                NotifyOfPropertyChange(() => SelectedTicket);
-            }
-        }
-
-
-        // txtboxes (body, responseText) data > UI 
-        private string body;
-        public string Body
-        {
-            get { return body; }
-            set
-            {
-                body = value;
-                NotifyOfPropertyChange(() => Body);
-            }
-        }
-        private string responseText;
-        public string ResponseText
-        {
-            get { return responseText; }
-            set
-            {
-                responseText = value;
-                NotifyOfPropertyChange(() => ResponseText);
-            }
-        }
-
         public void EditTicket()
         {
-            Console.WriteLine("# Bearbeiten geklickt");
+            Console.WriteLine("---> edit btn clicked <---");
 
             TicketModel selectedTicket = SelectedTicket;
 
@@ -213,8 +209,6 @@ namespace TicketUI.ViewModels
                 MessageBox.Show("Bitte wählen Sie ein Ticket aus.");
             }
         }
-
-
         public string GetLastArticleBody()
         {
             if (SelectedTicket != null)

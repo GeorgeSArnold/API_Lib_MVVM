@@ -5,7 +5,6 @@ C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\API_Lib.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Caliburn.Micro.Core.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Caliburn.Micro.Platform.Core.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Caliburn.Micro.Platform.dll
-C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\ChatGpt_Lib.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Microsoft.Bcl.AsyncInterfaces.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Microsoft.Xaml.Behaviors.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Newtonsoft.Json.dll
@@ -19,7 +18,6 @@ C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\System.Net.Http.Formatting.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Newtonsoft.Json.Bson.dll
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\API_Lib.pdb
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\API_Lib.dll.config
-C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\ChatGpt_Lib.pdb
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Caliburn.Micro.Core.pdb
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Caliburn.Micro.Core.xml
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Caliburn.Micro.Platform.pdb
@@ -70,3 +68,8 @@ C:\APIs\ApiDemoApp\API_Lib\TicketUI\obj\Debug\TicketUI.exe
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\obj\Debug\TicketUI.pdb
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\obj\Debug\Views\ChatGptEditView.g.cs
 C:\APIs\ApiDemoApp\API_Lib\TicketUI\obj\Debug\Views\ChatGptEditView.baml
+C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Bot_Lib.dll
+C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Bot_Lib.pdb
+C:\APIs\ApiDemoApp\API_Lib\TicketUI\obj\Debug\Views\OpenAiView.g.cs
+C:\APIs\ApiDemoApp\API_Lib\TicketUI\obj\Debug\Views\OpenAiView.baml
+C:\APIs\ApiDemoApp\API_Lib\TicketUI\bin\Debug\Bot_Lib.dll.config

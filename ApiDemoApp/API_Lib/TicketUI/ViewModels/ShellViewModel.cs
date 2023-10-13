@@ -33,5 +33,9 @@ namespace TicketUI.ViewModels
         {
             ActivateItemAsync(new ChatGptViewModel());
         }
+        public void LoadOpenAi()
+        {
+            ActivateItemAsync(new OpenAiViewModel());
+        }
     }
 }

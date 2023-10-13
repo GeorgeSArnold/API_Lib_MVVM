@@ -105,7 +105,7 @@ namespace TicketUI.ViewModels
             LoadLastArticleBody();
         }
 
-        private ObservableCollection<ArticleModel> articlesForTickets; // Zugriff auf die Artikelmodelle
+        private ObservableCollection<ArticleModel> articlesForTickets; // set Collection
 
         private string lastArticleBody;
         public string LastArticleBody
@@ -127,12 +127,12 @@ namespace TicketUI.ViewModels
                 if (lastArticle != null)
                 {
                     LastArticleBody = lastArticle.Body;
-                    CurrentArticleId = lastArticle.Id.ToString(); // Setze CurrentArticleId
+                    CurrentArticleId = lastArticle.Id.ToString(); // set CurrentArticleId
                 }
                 else
                 {
-                    LastArticleBody = "no article found"; // Änderung: klare Angabe, dass kein Artikel gefunden wurde
-                    CurrentArticleId = "N/A"; // Setze CurrentArticleId auf "N/A"
+                    LastArticleBody = "no article found"; 
+                    CurrentArticleId = "N/A";
                 }
             }
             else

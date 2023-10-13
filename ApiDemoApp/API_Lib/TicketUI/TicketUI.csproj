@@ -113,6 +113,7 @@
     <Compile Include="ViewModels\ChatGptViewModel.cs" />
     <Compile Include="ViewModels\ConnectionViewModel.cs" />
     <Compile Include="ViewModels\EditViewModel.cs" />
+    <Compile Include="ViewModels\OpenAiViewModel.cs" />
     <Compile Include="ViewModels\RTxtBoxViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TableViewModel.cs" />
@@ -131,6 +132,9 @@
     </Compile>
     <Compile Include="Views\EditView.xaml.cs">
       <DependentUpon>EditView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OpenAiView.xaml.cs">
+      <DependentUpon>OpenAiView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RTxtBoxView.xaml.cs">
       <DependentUpon>RTxtBoxView.xaml</DependentUpon>
@@ -177,9 +181,9 @@
       <Project>{e3c298ae-6d1b-4b23-95b0-4590346c340f}</Project>
       <Name>API_Lib</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ChatGpt_Lib\ChatGpt_Lib.csproj">
-      <Project>{9bf43f33-c673-4fbc-b9d9-54dbace9949f}</Project>
-      <Name>ChatGpt_Lib</Name>
+    <ProjectReference Include="..\Bot_Lib\Bot_Lib.csproj">
+      <Project>{37ca5887-6a70-419b-8768-668e5cc442c3}</Project>
+      <Name>Bot_Lib</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -203,6 +207,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\EditView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\OpenAiView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

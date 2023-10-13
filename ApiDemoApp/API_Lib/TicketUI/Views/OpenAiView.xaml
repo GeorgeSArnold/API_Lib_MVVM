@@ -1,0 +1,73 @@
+﻿<UserControl x:Class="TicketUI.Views.OpenAiView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:TicketUI.Views"
+             mc:Ignorable="d"
+             Background="#333333"
+             Foreground="WhiteSmoke"
+             FontSize="16"
+             d:DesignHeight="450" d:DesignWidth="670">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!--row 0-->
+        <StackPanel
+            Grid.Row="0"
+            Margin="10">
+            <TextBlock>
+                OpenAI Test
+            </TextBlock>
+        </StackPanel>
+
+        <!--row 1-->
+        <StackPanel
+            Grid.Row="1"
+            Margin="10">
+            <TextBlock>
+                Request
+            </TextBlock>
+            <TextBox
+                x:Name="Request"
+                Text="{Binding Request}"
+                Background="#424242"
+                Foreground="WhiteSmoke">
+            </TextBox>
+        </StackPanel>
+
+        <!--row 3-->
+        <StackPanel
+            Grid.Row="2">
+            <Button
+                x:Name="GetCompletions"
+                HorizontalAlignment="Left"
+                Width="155"
+                Margin="12">
+                Send
+            </Button>
+        </StackPanel>
+
+        <!--row 4-->
+        <StackPanel
+            Grid.Row="4"
+            Margin="10">
+            <TextBlock>
+                Response
+            </TextBlock>
+            <TextBox
+                x:Name="Response"
+                Text="{Binding Response}"
+                Background="#424242"
+                Foreground="WhiteSmoke">
+            </TextBox>
+        </StackPanel>
+    </Grid>
+</UserControl>
