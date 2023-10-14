@@ -1,4 +1,5 @@
 ﻿using API_Lib.Models;
+using Bot_Lib.Services;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -16,7 +17,6 @@ namespace TicketUI.ViewModels
     public class ChatGptEditViewModel : Screen
     {
         private int ticketId;
-
         // ticket fields
         private int id;
         private int number;
@@ -24,7 +24,7 @@ namespace TicketUI.ViewModels
         private string articleIdsString;
         // articleId > UI
         private string articleId;
-
+        // ticket props
         public int TicketId
         {
             get { return ticketId; }
@@ -80,7 +80,11 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => CurrentArticleId);
             }
         }
+        
+        // collection
+        private ObservableCollection<ArticleModel> articlesForTickets; // set Collection
 
+        // selected object <--- const
         private TicketModel selectedTicket;
         public TicketModel SelectedTicket
         {
@@ -97,7 +101,7 @@ namespace TicketUI.ViewModels
             }
         }
 
-
+        // const
         public ChatGptEditViewModel(TicketModel ticket, ObservableCollection<ArticleModel> articles)
         {
             SelectedTicket = ticket;
@@ -105,8 +109,7 @@ namespace TicketUI.ViewModels
             LoadLastArticleBody();
         }
 
-        private ObservableCollection<ArticleModel> articlesForTickets; // set Collection
-
+        // input <--- article body 
         private string lastArticleBody;
         public string LastArticleBody
         {
@@ -117,6 +120,55 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => LastArticleBody);
             }
         }
+        // output ---> responseBody  
+        private string responseBody;
+        public string ResponseBody 
+        {
+            get { return responseBody; }
+            set
+            {
+                responseBody = value;
+                NotifyOfPropertyChange(() => ResponseBody);
+            }
+        }
+
+        // relaycom > btn
+        private ICommand getsuggestCommand;
+        public ICommand GetSuggestCommand
+        {
+            get
+            {
+                if (getsuggestCommand == null)
+                    getsuggestCommand = new RelayCommand(param => GetSuggest(LastArticleBody));
+                return getsuggestCommand;
+            }
+        }
+
+        // relay clear btn
+        private ICommand clearRTxtBCommand;
+        public ICommand ClearRTxtBCommand
+        {
+            get
+            {
+                if (clearRTxtBCommand == null)
+                    clearRTxtBCommand = new RelayCommand(param => ClearRTxtB());
+                return clearRTxtBCommand;
+            }
+        }
+
+        // methods
+        public void ClearRTxtB()
+        {
+            Console.WriteLine("---> clear txt btn clicked <---");
+            if (ResponseBody != null)
+            {
+                ResponseBody = string.Empty;
+            }
+        }
+
+        //TODO: undo btn relaycom
+
+        // methods
         private void LoadLastArticleBody()
         {
             if (SelectedTicket != null && articlesForTickets != null)
@@ -131,7 +183,7 @@ namespace TicketUI.ViewModels
                 }
                 else
                 {
-                    LastArticleBody = "no article found"; 
+                    LastArticleBody = "no article found";
                     CurrentArticleId = "N/A";
                 }
             }
@@ -141,5 +193,29 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // latest article body > chatgpt > response body
+        public async Task GetSuggest(string LastArticleBody)
+        {
+            await Console.Out.WriteLineAsync("---> send btn clicked <---");
+            try
+            {
+                ConnectionViewModel cvm = new ConnectionViewModel();
+                string apiToken = cvm.GetGptToken();
+                OpenAiService openAiService = OpenAiService.GetInstance(apiToken);
+
+                await Console.Out.WriteLineAsync("---> sending promt <---");
+                string completion = await openAiService.GetCompletions(LastArticleBody);
+                await Console.Out.WriteLineAsync("---> get completion <---");
+
+                Console.WriteLine("Response: " + completion);
+
+                await Console.Out.WriteLineAsync("---> complation > Response prop <---");
+                ResponseBody = completion;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("Error: " + ex.Message);
+            }
+        }
     }
 }

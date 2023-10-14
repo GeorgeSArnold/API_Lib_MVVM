@@ -93,7 +93,7 @@ namespace TicketUI.ViewModels
             LoadConnectionDetails();
         }
    
-        // gets
+        // get methods
         public string GetServerIp()
         {
             return LoadedServerIp;
@@ -104,7 +104,7 @@ namespace TicketUI.ViewModels
         }
         public string GetGptToken()
         {
-            return LoadedZammadToken;
+            return loadedGptToken;
         }
 
         // save & load

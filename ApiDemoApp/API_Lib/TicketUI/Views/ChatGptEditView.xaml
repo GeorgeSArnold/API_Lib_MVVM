@@ -16,7 +16,6 @@
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
-
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto"/>
@@ -33,7 +32,6 @@
                     FontWeight="Bold">
                     Ticket Properties
                 </TextBlock>
-
             </StackPanel>
 
             <StackPanel Grid.Row="1" Grid.Column="0"
@@ -48,7 +46,6 @@
                      Margin="5"
                      Background="#3D3D3D"
                      Foreground="WhiteSmoke"/>
-
                 <TextBlock Text="Number:" Margin="5"/>
                 <TextBox x:Name="Number"
                          Text="{Binding SelectedTicket.Number}"
@@ -59,7 +56,6 @@
                      Margin="5"
                      Background="#3D3D3D"
                      Foreground="WhiteSmoke"/>
-
                 <TextBlock Text="Title:" Margin="5"/>
                 <TextBox x:Name="Title"
                          Text="{Binding SelectedTicket.Title}"
@@ -88,7 +84,6 @@
                     Grid.Row="0"
                     Orientation="Horizontal"
                     Margin="10">
-
                 <TextBlock
                 Margin="10"
                 FontSize="12"
@@ -100,31 +95,22 @@
                 Height="23"
                 Background="#3D3D3D"
                 Foreground="WhiteSmoke"/>
-
+                <!--chatgpt btn-->
                 <Button
                 x:Name="GetSuggest"
                 HorizontalAlignment="Left"
                 Margin="10"
                     Content="Get ChatGPT Suggest" Command="{Binding DataContext.GetSuggestCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
-
                 <Button
                 x:Name="Clear"
                 HorizontalAlignment="Left"
                 Margin="10"
-                    Content="Clear RichTextBox" Command="{Binding DataContext.ClearRTxtBCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
-
-                <Button
-                x:Name="Undo"
-                HorizontalAlignment="Left"
-                Margin="10"
-                    Content="Undo" Command="{Binding DataContext.UndoTextCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
-
+                    Content="Clear Response" Command="{Binding DataContext.ClearRTxtBCommand, RelativeSource={RelativeSource AncestorType=Window}}"/>
             </StackPanel>
             <!--row2 richtxtBox-->
-
             <!-- Red RichTextBox with "Article Body" header -->
             <StackPanel Grid.Row="1" Grid.Column="1" Margin="7">
-                <TextBlock Text="Article Body:"/>
+                <TextBlock Text="Ticket Article Body:"/>
                 <RichTextBox
         Background="#3D3D3D"
         Foreground="WhiteSmoke"
@@ -139,10 +125,9 @@
                 </RichTextBox>
                 <!-- Set a minimum height -->
             </StackPanel>
-
             <!-- Blue RichTextBox with "Suggest Body" header -->
             <StackPanel Grid.Row="3" Grid.Column="1" Margin="7">
-                <TextBlock Text="Response Body:"/>
+                <TextBlock Text="GPT-API Response:"/>
                 <RichTextBox
         Background="#3D3D3D"
         Foreground="WhiteSmoke"
@@ -151,13 +136,12 @@
         MinHeight="100">
                     <FlowDocument>
                         <Paragraph>
-                            <Run x:Name="Response" Text="{Binding ResponseText}"/>
+                            <Run x:Name="Response" Text="{Binding ResponseBody}"/>
                         </Paragraph>
                     </FlowDocument>
                 </RichTextBox>
                 <!-- Set a minimum height -->
             </StackPanel>
-
         </Grid>
     </Grid>
 </Window>

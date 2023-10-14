@@ -92,25 +92,24 @@ namespace TicketUI.ViewModels
             }
         }
 
-        // methods
-        public ObservableCollection<ArticleModel> GenerateArticleModels(ObservableCollection<TicketModel> tickets)
+        // ticket methods
+        public void EditTicket()
         {
-            ObservableCollection<ArticleModel> articles = new ObservableCollection<ArticleModel>();
+            Console.WriteLine("---> edit btn clicked <---");
 
-            foreach (var ticket in tickets)
+            TicketModel selectedTicket = SelectedTicket;
+
+            if (selectedTicket != null)
             {
-                foreach (var articleId in ticket.Article_ids)
-                {
-                    articles.Add(new ArticleModel
-                    {
-                        Id = articleId,
-                        Ticket_id = ticket.Id,
-                        Body = $"Artikel-Body für Ticket {ticket.Number}, Artikel ID {articleId}"
-                    });
-                }
+                ChatGptEditViewModel chatGpteditViewModel = new ChatGptEditViewModel(selectedTicket, articlesForTickets);
+                ChatGptEditView ev = new ChatGptEditView(selectedTicket, articlesForTickets); // Übergebe articlesForTickets hier
+                ev.DataContext = chatGpteditViewModel;
+                ev.Show();
             }
-
-            return articles;
+            else
+            {
+                MessageBox.Show("Bitte wählen Sie ein Ticket aus.");
+            }
         }
         public void LoadDummyTickets()
         {
@@ -153,6 +152,42 @@ namespace TicketUI.ViewModels
 
             TicketList = tickets;
         }
+        // article methods
+        public void LoadArticleBodys()
+        {
+            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 1
+            UpdateArticleBody(1, "Hallo ITA, kann ich neue Batterien für meine Maus bekommen?");
+
+            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 2
+            UpdateArticleBody(2, "Hey ITA, meine Camera reagiert nicht mehr?");
+
+            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 3
+            UpdateArticleBody(3, "Hallo ITA, wie regestriere ich mich bei Microsoft Word?");
+
+            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 4
+            UpdateArticleBody(4, "Guten Morgen IT, wie erstelle ich ein Konto bei Microsoft 356?");
+
+            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 5
+            UpdateArticleBody(5, "Hi ITA, wie kann ich mein Passwort wiederherstellen bei Microsoft Outlook?");
+
+            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 6
+            UpdateArticleBody(6, "Hi IT, wie installiere ich einen Epson ES300 Durcker?");
+        }
+        public string GetLastArticleBody()
+        {
+            if (SelectedTicket != null)
+            {
+                int lastArticleId = SelectedTicket.Article_ids.Any() ? SelectedTicket.Article_ids.Max() : 0;
+                ArticleModel lastArticle = articlesForTickets.FirstOrDefault(article => article.Id == lastArticleId);
+
+                if (lastArticle != null)
+                {
+                    return lastArticle.Body;
+                }
+            }
+
+            return "Kein Artikel gefunden.";
+        }
         public void UpdateArticleBody(int articleId, string newBody)
         {
             var article = articlesForTickets.FirstOrDefault(a => a.Id == articleId);
@@ -171,58 +206,24 @@ namespace TicketUI.ViewModels
             }
 
         }
-        public void LoadArticleBodys()
+        public ObservableCollection<ArticleModel> GenerateArticleModels(ObservableCollection<TicketModel> tickets)
         {
-            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 1
-            UpdateArticleBody(1, "Neuer Body für Artikel 1");
+            ObservableCollection<ArticleModel> articles = new ObservableCollection<ArticleModel>();
 
-            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 2
-            UpdateArticleBody(2, "Neuer Body für Artikel 2");
-
-            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 3
-            UpdateArticleBody(3, "Neuer Body für Artikel 3");
-
-            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 4
-            UpdateArticleBody(4, "Neuer Body für Artikel 4");
-
-            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 5
-            UpdateArticleBody(5, "Neuer Body für Artikel 5");
-
-            // Beispielaufruf zum Aktualisieren des Body für Artikel mit ID 6
-            UpdateArticleBody(6, "Neuer Body für Artikel 6");
-        }
-        public void EditTicket()
-        {
-            Console.WriteLine("---> edit btn clicked <---");
-
-            TicketModel selectedTicket = SelectedTicket;
-
-            if (selectedTicket != null)
+            foreach (var ticket in tickets)
             {
-                ChatGptEditViewModel chatGpteditViewModel = new ChatGptEditViewModel(selectedTicket, articlesForTickets);
-                ChatGptEditView ev = new ChatGptEditView(selectedTicket, articlesForTickets); // Übergebe articlesForTickets hier
-                ev.DataContext = chatGpteditViewModel;
-                ev.Show();
-            }
-            else
-            {
-                MessageBox.Show("Bitte wählen Sie ein Ticket aus.");
-            }
-        }
-        public string GetLastArticleBody()
-        {
-            if (SelectedTicket != null)
-            {
-                int lastArticleId = SelectedTicket.Article_ids.Any() ? SelectedTicket.Article_ids.Max() : 0;
-                ArticleModel lastArticle = articlesForTickets.FirstOrDefault(article => article.Id == lastArticleId);
-
-                if (lastArticle != null)
+                foreach (var articleId in ticket.Article_ids)
                 {
-                    return lastArticle.Body;
+                    articles.Add(new ArticleModel
+                    {
+                        Id = articleId,
+                        Ticket_id = ticket.Id,
+                        Body = $"article-body > Ticket {ticket.Number}, Artikel ID {articleId}"
+                    });
                 }
             }
 
-            return "Kein Artikel gefunden.";
+            return articles;
         }
     }
 }

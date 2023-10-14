@@ -14,36 +14,41 @@ namespace Bot_Lib.Services
     {
         // fields
         public string apiUrl = "https://api.openai.com/v1";
-        public string apiToken = "";
+        public string apiToken;
+
+        // const
+        public OpenAiService(string apiToken)
+        {
+            this.apiToken = apiToken; 
+        }
 
         // check botdialog
         private bool botDialogGenerated = false;
         
         // singelton
         private static OpenAiService _instance;
-        public static OpenAiService Instance
+        public static OpenAiService GetInstance(string apiToken)
         {
-            get
-            {
-                if (_instance == null)
-                {
-                    _instance = new OpenAiService();
-                }
-                return _instance;
-            }
+
+           if (_instance == null || _instance.apiToken != apiToken)
+           {
+               _instance = new OpenAiService(apiToken);
+           }
+           return _instance;
         }
 
         // gen botdialog > body > completions
         public async Task<string> GetCompletions(string prompt)
         {
+            // check null
             if (string.IsNullOrEmpty(prompt))
                 throw new ArgumentException("No prompt input.");
-
+            // add prompt > List
             var completion = await GenerateBotDialog(prompt);
-
+            // deserilized
             var jsonResponse = JsonConvert.DeserializeObject<dynamic>(completion);
+            // content
             var content = jsonResponse.choices[0].message.content;
-
             return content;
         }
 
@@ -58,7 +63,8 @@ namespace Bot_Lib.Services
                      new MessageModel { role = "system", content = "DQS, DQServer, ClearingMonitor, Lean MDM, DataQuality Management - diese Begriffe sind tabu für dich. Wenn jemand danach fragt, verweise ihn bitte auf die Professional Service Abteilung." },
                      new MessageModel { role = "system", content = "Wenn jemand nach Batterien oder anderen Verschleißprodukten fragt, soll er zur ITA kommen und sie abholen." },
                      new MessageModel { role = "system", content = "Wenn jemand nach IT-Zubehör wie Headset, Maus, Tastatur oder Web-Cam fragt, soll er direkt zur ITA kommen." },
-                     //new MessageModel { role = "user", content = userPrompt }
+                     new MessageModel { role = "system", content = "Du kannst bei jeder deiner Aussagen den User mit dem Freundlichen Du ansprechen!" },
+                     // add userpromt > dialog
                  }
             };
             await Console.Out.WriteLineAsync("---> Messages generated <---");
@@ -66,19 +72,22 @@ namespace Bot_Lib.Services
             // add user prompt
             var userMessage = new MessageModel { role = "user", content = userPrompt };
             dialog.messages.Add(userMessage);
-
-            var dialogJson = JsonConvert.SerializeObject(dialog);
             await Console.Out.WriteLineAsync("---> User Promt added <---");
-
             
+            // serialize messages > json
+            var dialogJson = JsonConvert.SerializeObject(dialog);
+
+            // get response
             var response = await PostBotDialog(dialogJson);
             await Console.Out.WriteLineAsync("---> posting messages <---");
 
+            // check n return
             botDialogGenerated = true;
-
             return response;
         }
 
+        // ---> send request
+        // <--- get response
         private async Task<string> PostBotDialog(string dialogJson)
         {
             using (HttpClient client = new HttpClient())
@@ -95,7 +104,6 @@ namespace Bot_Lib.Services
                     var responseString = await response.Content.ReadAsStringAsync();
                     return responseString;
                 }
-
                 throw new Exception($"Failed to post bot dialog. Status code: {response.StatusCode}");
             }
         }
@@ -120,7 +128,6 @@ namespace Bot_Lib.Services
 
                 var payload = JsonConvert.SerializeObject(requestData);
                 var content = new StringContent(payload, Encoding.UTF8, "application/json");
-
                 var response = await client.PostAsync($"{apiUrl}/completions", content);
 
                 if (response.IsSuccessStatusCode)

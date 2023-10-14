@@ -123,12 +123,13 @@ namespace TicketUI.ViewModels
                 NotifyOfPropertyChange(() => SelectedTicket);
             }
         }
-
+        // obj
         public TicketModel GetSelectedTicket()
         {
             return SelectedTicket;
         }
-
+        
+        // open > Window
         public void EditTicket()
         {
             Console.WriteLine("# Bearbeiten geklickt");

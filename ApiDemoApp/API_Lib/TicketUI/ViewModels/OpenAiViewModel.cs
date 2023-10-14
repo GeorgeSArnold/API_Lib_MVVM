@@ -38,18 +38,17 @@ namespace TicketUI.ViewModels
             await Console.Out.WriteLineAsync("---> send btn clicked <---");
             try
             {
-                OpenAiService openAiService = OpenAiService.Instance;
+                ConnectionViewModel cvm = new ConnectionViewModel();
+                string apiToken = cvm.GetGptToken();
+                OpenAiService openAiService = OpenAiService.GetInstance(apiToken);
 
-                // Request = "Hallo ITA kann ich neue Batterien für meine Maus bekommen?";
-                await Console.Out.WriteLineAsync("---> sending promt <---");
-
-                // Aufrufen der Methode
+                await Console.Out.WriteLineAsync("---> sending promt --->");
                 string completion = await openAiService.GetCompletions(Request);
-                await Console.Out.WriteLineAsync("---> get completion <---");
+                await Console.Out.WriteLineAsync("<--- get completion <---");
 
-                // Verarbeiten Sie die Antwort
-                Console.WriteLine("Completion: " + completion);
+                Console.WriteLine("Response: " + completion);
 
+                await Console.Out.WriteLineAsync("---> complation > Response prop <---");
                 Response = completion;
             }
             catch (Exception ex)

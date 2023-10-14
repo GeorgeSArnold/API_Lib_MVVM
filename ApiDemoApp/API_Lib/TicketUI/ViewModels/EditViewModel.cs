@@ -18,17 +18,14 @@ namespace TicketUI.ViewModels
         // props
         // input < UI
         private int ticketId;
-
         // ticket fields
         private int id;
         private int number;
         private string title;
         private List<int> article_ids;
         private string articleIdsString;
-
         // articleId > UI
-        private int articleId;
-        
+        private int articleId;   
         // richtxtBox
         private string body;
 
@@ -163,6 +160,7 @@ namespace TicketUI.ViewModels
             }
         }
 
+        // article logic
         public async Task LoadLatestArticleBody()
         {
             try
@@ -171,11 +169,9 @@ namespace TicketUI.ViewModels
 
                 if (articles != null)
                 {
-                    // 
                     Articles = new List<ArticleModel>(articles);
                     ArticleModel latestArticle = GetLatestArticle(articles);
                     Body = CleanBodyFromTags(latestArticle);
-
 
                     ArticleIdsString = string.Join(", ", articles.Select(a => a.Id));
 
@@ -196,7 +192,6 @@ namespace TicketUI.ViewModels
                 Console.WriteLine("Fehler beim Laden des Artikel-Body: " + ex.Message);
             }
         }
-
         private async Task<List<ArticleModel>> LoadAllArticlesFromTicket(int ticketId)
         {
             try
@@ -215,7 +210,6 @@ namespace TicketUI.ViewModels
                 return null;
             }
         }
-
         public ArticleModel GetLatestArticle(List<ArticleModel> articles)
         {
             if (articles == null || articles.Count == 0)
@@ -224,8 +218,7 @@ namespace TicketUI.ViewModels
             }
             return articles.OrderByDescending(a => a.Id).First();
         }
-
-        // get body
+        // clean
         public string CleanBodyFromTags(ArticleModel latestArticle)
         {
             if (latestArticle == null)
@@ -236,14 +229,13 @@ namespace TicketUI.ViewModels
 
             return cleanedBody;
         }
-
         // remove tags
         private string RemoveHtmlTags(string input)
         {
             return Regex.Replace(input, "<.*?>", string.Empty);
         }
 
-        // fields > buttons > UI
+        // relay fields > buttons > UI
         private ICommand getsuggestCommand;
         public ICommand GetSuggestCommand
         {
@@ -254,7 +246,6 @@ namespace TicketUI.ViewModels
                 return getsuggestCommand;
             }
         }
-
         private ICommand clearRTxtBCommand;
         public ICommand ClearRTxtBCommand
         {
@@ -265,7 +256,6 @@ namespace TicketUI.ViewModels
                 return clearRTxtBCommand;
             }
         }
-
         private ICommand undoTextCommand;
         public ICommand UndoTextCommand
         {
@@ -277,10 +267,10 @@ namespace TicketUI.ViewModels
             }
         }
 
-        // button methods > UI
+        // methods btns > UI
         public void GetSuggest()
         {
-            Console.WriteLine("ChatGPT Suggest Button clicked");
+            Console.WriteLine("---> ChatGPT Suggest Button clicked <---");
         }
         public void ClearRTxtB()
         {
@@ -291,7 +281,7 @@ namespace TicketUI.ViewModels
             }
         }
         
-        // undo
+        // methods
         private Stack<string> textUndoStack = new Stack<string>();
         private string currentText = string.Empty;
         public void SaveCurrentText()

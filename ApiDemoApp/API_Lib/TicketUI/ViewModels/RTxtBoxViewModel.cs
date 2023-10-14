@@ -9,14 +9,5 @@ namespace TicketUI.ViewModels
 {
     public class RTxtBoxViewModel : Screen
     {
-        private string _displayText = "Hallo Welt!";
-
-        public string DisplayText
-        {
-            get { return _displayText; }
-            set
-            {
-            }
-        }
     }
 }
